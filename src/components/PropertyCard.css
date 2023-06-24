@@ -1,0 +1,52 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  max-height: 350px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  align-items: start;
+  justify-content: center;
+  background-color: red;
+  /* padding: 16px; */
+  border-radius: 4px;
+  gap: 16px;
+  padding: 16px;
+  /* background-color: var(--color-light); */
+}
+
+.card-media img {
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: orange;
+  align-items: flex-start;
+  gap: 8px;
+  
+
+}
+
+.card-text-heading {
+  color: var(--color-dark);
+  font-size: 25px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.card-text-address {
+    color: var(--color-dark-subtle);
+  font-size: 20px;
+  font-family: var(--font-family);
+}

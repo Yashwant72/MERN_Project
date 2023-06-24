@@ -48,7 +48,7 @@ const Buy = () => {
   };
 
   return (
-    <div className="container">
+    <div className="buy-container">
       <div className="buy">
         <div className="buy-input">
           <input
