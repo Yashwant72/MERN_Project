@@ -11,7 +11,7 @@ const Buy = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showList, setShowList] = useState(false);
   const [showMap, setShowMap] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
+  const [showGallery, setShowGallery] = useState(true);
 
   useEffect(() => {
     let timer;

@@ -1,11 +1,26 @@
 import React from "react";
-import PropteryCard from "./PropertyCard";
+import "./gallery.css";
+import PropertyCard from "./PropertyCard";
+import buildingData from "../assets/dummyData/buildingData";
+
+// console.log(buildingData);
 
 const Gallery = () => {
   return (
-    <div>
-      Gallery
-      <PropteryCard />
+    <div className="gallery-container">
+      <div className="gallery">
+        {buildingData.map((building, index) => (
+          <PropertyCard
+            key={index}
+            img={building.img}
+            price={building.price}
+            address={building.address}
+            bed={building.bed}
+            tub={building.tub}
+            area={building.area}
+          />
+        ))}
+      </div>
     </div>
   );
 };

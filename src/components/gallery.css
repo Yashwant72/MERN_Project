@@ -1,0 +1,18 @@
+.gallery-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
