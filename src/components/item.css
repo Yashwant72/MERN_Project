@@ -1,0 +1,73 @@
+.listItem-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background-color: green;
+  background-color: var(--color-light);
+  column-gap: 80px;
+  padding: 0px 80px;
+}
+
+.listItem-image img {
+  height: 80px;
+  width: 80px;
+}
+
+.listItem-price,
+.listItem-address {
+  color: var(--color-dark);
+  font-size: 18px;
+  font-family: var(--font-family);
+}
+
+.listItem-price {
+  width: 200px;
+}
+.listItem-address {
+  display: flex;
+  flex-direction: row;
+  max-width: 350px;
+  /* width: 400px; */
+}
+
+.listItem-icons {
+  display: flex;
+  flex-direction: row;
+  /* width: 200px; */
+  /* width: 100%; */
+  align-items: end;
+  justify-content: start;
+}
+
+.listItem-beds,
+.listItem-tub,
+.listItem-area {
+  display: flex;
+  /* width: 100%; */
+  min-width: 5ch;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-dark);
+  /* color: red; */
+  font-size: 16px;
+  font-family: var(--font-family);
+  margin: 10px;
+}
+/* .listItem-area {
+  width: 90px;
+} */
+
+.listItem-beds img,
+.listItem-tub img,
+.listItem-area img {
+  margin-right: 10px;
+}

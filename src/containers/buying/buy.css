@@ -6,7 +6,7 @@
   /* background-color: red; */
   padding: 10px 20px;
   gap: 100px;
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 .buy {
@@ -53,6 +53,14 @@ input[type="text"]:focus {
   justify-content: space-between;
   align-items: center;
   max-width: 450px;
+  /* background-color: green; */
+}
+
+.buy-options-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
   /* background-color: green; */
 }
 

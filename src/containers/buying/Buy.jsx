@@ -2,9 +2,11 @@ import React from "react";
 import "./buy.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import List from "../../components/List";
-import Map from "../../components/Map";
-import Gallery from "../../components/Gallery";
+import List from "./list/List";
+import Map from "./map/Map";
+import Gallery from "./gallery/Gallery";
+// import Gallery from "../../components/Gallery";
+
 import filter from "../../assets/icons/filter.png";
 const Buy = () => {
   const [searchText, setSearchText] = useState("");
@@ -87,9 +89,11 @@ const Buy = () => {
           </div>
         </div>
       </div>
-      {showList && <List />}
-      {showMap && <Map />}
-      {showGallery && <Gallery />}
+      <div className="buy-options-container">
+        {showList && <List />}
+        {showMap && <Map />}
+        {showGallery && <Gallery />}
+      </div>
     </div>
   );
 };

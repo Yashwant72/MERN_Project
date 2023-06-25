@@ -116,7 +116,7 @@ const buildingData = [
         price: 800000,
         address: "789 Pine Lane, City O, Excepteur sint occaecat cupidatat non.",
         bed: 2,
-        tub: 1,
+        tub: 2,
         area: 1200,
     },
 ];

@@ -1,7 +1,7 @@
 import React from "react";
 import "./gallery.css";
-import PropertyCard from "./PropertyCard";
-import buildingData from "../assets/dummyData/buildingData";
+import PropertyCard from "../../../components/PropertyCard";
+import buildingData from "../../../assets/dummyData/buildingData";
 
 // console.log(buildingData);
 
