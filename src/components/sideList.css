@@ -1,0 +1,209 @@
+.sideList-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0px;
+  border-radius: 10px 0px 0px 10px;
+}
+.sideList {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px ;
+  background-color: var(--color-light);
+}
+.sideList-col1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+.sideList-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sideList-image img {
+  border-radius: 10px 0px 0px 10px;
+  width: 200px;
+  height: 150px;
+}
+.sideList-col2 {
+  min-height: 128px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  /* background-color: violet; */
+  padding: 10px;
+  gap: 10px;
+}
+.sideList-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-dark);
+  font-size: 16px;
+  font-family: var(--font-family);
+  gap: 10px;
+  /* background-color: blue; */
+  width: 100%;
+}
+.sideList-bed,
+.sideList-tub,
+.sideList-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 2.5px;
+}
+
+.sideList-bed-icon,
+.sideList-tub-icon,
+.sideList-area-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sideList-address {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: flex-start;
+  width: 100%;
+  /* max-width: 200px; */
+  /* padding: 10px; */
+  gap: 10px;
+  /* background-color: aliceblue; */
+}
+
+.sideList-address-street {
+  color: var(--color-dark);
+  font-size: 16px;
+  font-family: var(--font-family);
+}
+
+.sideList-address-state {
+  color: var(--color-dark-subtle);
+  font-size: 14px;
+  font-family: var(--font-family);
+}
+
+.sideList-col3 {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: violet; */
+  padding: 10px;
+  gap: 10px;
+}
+.sideList-price {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-self: center;
+  align-items: flex-start;
+  gap: 10px;
+  /* background-color: antiquewhite; */
+}
+
+.sideList-price-total {
+  color: var(--color-dark);
+  font-size: 16px;
+  font-family: var(--font-family);
+}
+
+.sideList-price-unit {
+  color: var(--color-dark-subtle);
+  font-size: 14px;
+  font-family: var(--font-family);
+}
+
+.sideList-type {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-self: center;
+  align-items: flex-start;
+  gap: 10px;
+  /* background-color: azure; */
+}
+
+.sideList-type-name {
+  color: var(--color-dark);
+  font-size: 16px;
+  font-family: var(--font-family);
+}
+
+.sideList-type-info {
+  color: var(--color-dark-subtle);
+  font-size: 14px;
+  font-family: var(--font-family);
+}
+
+.sideList-col4 {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: violet; */
+  padding: 10px;
+  gap: 10px;
+}
+
+.sideList-date {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-self: center;
+  align-items: flex-start;
+  gap: 10px;
+  /* background-color: antiquewhite; */
+}
+
+.sideList-date-main {
+  color: var(--color-dark);
+  font-size: 16px;
+  font-family: var(--font-family);
+}
+
+.sideList-date-info {
+  color: var(--color-dark-subtle);
+  font-size: 14px;
+  font-family: var(--font-family);
+}
+
+.sideList-status {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-self: center;
+  align-items: flex-start;
+  gap: 10px;
+  /* background-color: azure; */
+}
+
+.sideList-status-main {
+  color: var(--color-dark);
+  font-size: 16px;
+  font-family: var(--font-family);
+}
+
+.sideList-status-info {
+  color: var(--color-dark-subtle);
+  font-size: 14px;
+  font-family: var(--font-family);
+}
