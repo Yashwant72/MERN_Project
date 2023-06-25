@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 10px 0px;
 }
 
 .listItem {
@@ -11,15 +12,25 @@
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  background-color: green;
   background-color: var(--color-light);
-  column-gap: 80px;
-  padding: 0px 80px;
+  /* column-gap: 80px; */
+  /* padding: 0px 80px; */
 }
-
+.listItem-image {
+  width: 15%;
+  height: 15%;
+  background-color: brown;
+  display: flex;
+  justify-content: center;
+  /* height: 80px;
+  width: 80px; */
+}
 .listItem-image img {
   height: 80px;
   width: 80px;
+  /* width: 80px; */
+  /* width: 5%; */
+  border-radius: 10px;
 }
 
 .listItem-price,
@@ -30,44 +41,41 @@
 }
 
 .listItem-price {
-  width: 200px;
+  display: flex;
+  width: 15%;
+  justify-content: center;
+  background-color: chartreuse;
+  /* max-width: 200px; */
 }
 .listItem-address {
   display: flex;
+  width: 35%;
+  justify-content: start;
   flex-direction: row;
   max-width: 350px;
-  /* width: 400px; */
 }
 
 .listItem-icons {
   display: flex;
   flex-direction: row;
-  /* width: 200px; */
-  /* width: 100%; */
   align-items: end;
-  justify-content: start;
+  width: 35%;
+  justify-content: space-between;
+  background-color: cadetblue;
 }
 
 .listItem-beds,
 .listItem-tub,
 .listItem-area {
+  /* width: 5%; */
   display: flex;
-  /* width: 100%; */
-  min-width: 5ch;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   color: var(--color-dark);
-  /* color: red; */
-  font-size: 16px;
   font-family: var(--font-family);
-  margin: 10px;
+  font-size: 16px;
 }
-/* .listItem-area {
-  width: 90px;
-} */
-
-.listItem-beds img,
-.listItem-tub img,
-.listItem-area img {
-  margin-right: 10px;
+.listItem-text {
+  min-width: 5ch;
+  text-align: center;
 }

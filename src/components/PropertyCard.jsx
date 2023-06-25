@@ -8,30 +8,27 @@ const PropertyCard = (props) => {
     <div className="card-container">
       <div className="card">
         <div className="card-media">
-          <img
-            src={props.img}
-            alt="Building"
-            width="250px"
-            height="150px"
-          />
+          <img src={props.img} alt="Building" width="250px" height="150px" />
         </div>
-        <div className="card-text">
-          <div className="card-text-heading">${props.price}</div>
+        <div className="card-content">
+          <div className="card-text">
+            <div className="card-text-heading">${props.price}</div>
 
-          <div className="card-text-address">
-            {props.address}
+            <div className="card-text-address">{props.address}</div>
           </div>
-        </div>
-        <div className="card-footer">
-          <div className="card-footer-bed">
-            <img src={bed} alt="bed" />{props.bed}
-          </div>
-          <div className="card-footer-tub">
-            <img src={tub} alt="bed" />{props.tub}
-          </div>
-          <div className="card-footer-area">
-            <img src={area} alt="bed" />
-            {props.area}
+          <div className="card-footer">
+            <div className="card-footer-bed">
+              <img src={bed} alt="bed" />
+              {props.bed}
+            </div>
+            <div className="card-footer-tub">
+              <img src={tub} alt="bed" />
+              {props.tub}
+            </div>
+            <div className="card-footer-area">
+              <img src={area} alt="bed" />
+              {props.area}
+            </div>
           </div>
         </div>
       </div>

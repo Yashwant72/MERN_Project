@@ -15,15 +15,15 @@ const ListItem = (props) => {
         <div className="listItem-icons">
           <div className="listItem-beds">
             <img src={bed} alt="bed" />
-            {props.bed}
+            <div className="listItem-text">{props.bed}</div>
           </div>
           <div className="listItem-tub">
             <img src={tub} alt="tub" />
-            {props.tub}
+            <div className="listItem-text">{props.tub}</div>
           </div>
           <div className="listItem-area">
             <img src={area} alt="area" />
-            {props.area}
+            <div className="listItem-text">{props.area}</div>
           </div>
         </div>
       </div>

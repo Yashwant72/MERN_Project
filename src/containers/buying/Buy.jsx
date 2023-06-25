@@ -11,9 +11,9 @@ import filter from "../../assets/icons/filter.png";
 const Buy = () => {
   const [searchText, setSearchText] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [showList, setShowList] = useState(false);
+  const [showList, setShowList] = useState(true);
   const [showMap, setShowMap] = useState(false);
-  const [showGallery, setShowGallery] = useState(true);
+  const [showGallery, setShowGallery] = useState(false);
 
   useEffect(() => {
     let timer;
