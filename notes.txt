@@ -1,0 +1,22 @@
+LANDING PAGE
+-> Data
+	- Auth Token
+-> Routes
+	- Login/Sign up
+
+HEADER
+-> Routes
+	- About ?
+	- Buy
+	- Sell
+	- Help
+
+SELL PAGE
+-> Location
+-> Area
+-> Image Carousel
+-> Type
+-> Rooms
+-> Facilities
+-> Description
+-> Price
