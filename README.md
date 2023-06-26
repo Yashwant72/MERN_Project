@@ -6,6 +6,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run dev`
+
+Concurrently starts the server and the client in development mode.
+
+### `npm run serve`
+
+Starts the server tracking changes to the server.js file and reloading the server with any changes made.
+
 ### `npm start`
 
 Runs the app in the development mode.\
