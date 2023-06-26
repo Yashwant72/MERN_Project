@@ -7,23 +7,20 @@ import "./List.css";
 // import arrowUp from "../../../assets/icons/arrowUp.png";
 import arrowDown from "../../../assets/icons/arrowDown.png";
 
-const List = () => {
-  const [sortColumn, setSortColumn] = useState("price"); 
+const List = (props) => {
+  const [sortColumn, setSortColumn] = useState("price");
 
-  const [sortOrder, setSortOrder] = useState("asc"); 
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const handleSort = (column) => {
     if (sortColumn === column) {
-   
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     } else {
-
       setSortColumn(column);
       setSortOrder("asc");
     }
   };
 
- 
   const sortBuildingData = () => {
     if (sortColumn === "price") {
       return buildingData.sort((a, b) => {
@@ -58,10 +55,13 @@ const List = () => {
         }
       });
     } else {
-     
       return buildingData;
     }
   };
+
+  const filteredBuildingData = buildingData.filter((item) =>
+    item.address.toLowerCase().includes(props.keyword.toLowerCase())
+  );
 
   const sortedBuildingData = sortBuildingData();
   return (
@@ -197,7 +197,7 @@ const List = () => {
             </tr>
           </thead>
           <tbody>
-            {sortedBuildingData.map((item, index) => (
+            {filteredBuildingData.map((item, index) => (
               <tr className="listRow" key={index}>
                 <td className="listRow-image">
                   <img src={item.img} alt="image" />

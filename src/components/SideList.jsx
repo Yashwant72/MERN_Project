@@ -6,9 +6,15 @@ import area from "../assets/icons/area.png";
 
 const SideList = (props) => {
   const pricePerUnit = (props.price / props.area).toFixed(2);
-  console.log(pricePerUnit);
+  // console.log(pricePerUnit);
+
+  const handleClick = () => {
+    props.onClick(props.address); // Pass the address to the parent component's click handler
+  };
+
+
   return (
-    <div className="sideList-container">
+    <div className="sideList-container" onClick={handleClick}>
       <div className="sideList">
         <div className="sideList-col1">
           <div className="sideList-image">
