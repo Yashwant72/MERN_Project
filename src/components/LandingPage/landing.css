@@ -1,0 +1,79 @@
+.landing-page{
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 600;
+    height: 600;
+    position: relative;
+}
+.search-card{
+    border-radius: 3px;
+    max-width: 45rem;
+    position: absolute;
+    top: 100px;
+    left: 60px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 2.5rem;
+}
+h1{
+    font-size: 38px;
+    font-family: var(--font-family);
+}
+.search-card h4{
+    font-weight: normal;
+    font-family: var(--font-family);
+}
+.card-searchBox{
+    position: relative;
+    display: inline-block;
+}
+.search-box{
+    background-color: rgb(228, 228, 228);
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    width: 39.5rem;
+    height: 2.5rem;
+    padding: 15px;
+}
+.search-icon{
+    position: absolute;
+    right: 0;
+    top:0.5rem;
+    margin-right: 7px;
+}
+
+::-webkit-input-placeholder { 
+    color: rgb(0, 0, 0);
+    font-family: var(--font-family);
+    font-weight: 500;
+}
+.create-button{
+    padding: 15px;
+    border: none;
+    background-color: rgba(18, 141, 255, 0.586);
+    outline: none;
+    color: white;
+    width: 15rem;
+    border-radius: 3px;
+}
+.card-button{
+    margin-top: 15px;
+    position: relative;
+    display: inline-block;
+}
+.create-icon{
+    color: white;
+    position: absolute;
+    right: 0;
+    top:1rem;
+    margin-right: 30px;
+}
+
+.card-login{
+    margin-top: 15px;
+    display: flex;
+}
+.card-login p,a{
+    font-family: var(--font-family);
+    padding: 2px;
+}
