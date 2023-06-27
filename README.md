@@ -12,7 +12,13 @@ Concurrently starts the server and the client in development mode.
 
 ### `npm run serve`
 
-Starts the server tracking changes to the server.js file and reloading the server with any changes made.
+Starts the server tracking changes to the server.js file and reloading the server with any changes made.\
+Open [http://localhost:8080](http://localhost:8080) to make API calls to the server.
+
+The proxy is set up so the requests can be made from the client directly using fetch("/api/`route`").
+
+Required enviroment variables to be present in a `.env` file in the root directory.
+`MONOGODB_URI`
 
 ### `npm start`
 

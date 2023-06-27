@@ -1,12 +1,22 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const userRouter = require("./routers/userRouter");
 
 const port = process.env.PORT || 8080;
 const app = express();
 
-app.get("/api/hello", (req, res) => {
-	res.send({ text: "Hello World" });
-})
+app.use(express.json());
 
-app.listen(port, () => {
-	console.log(`Server started successfully on port ${port}`);
-})
+app.use("/api/user", userRouter);
+
+const startServer = async () => {
+	// console.log(process.env.MONGODB_URI);
+	await mongoose.connect(process.env.MONGODB_URI);
+	console.log("MongoDB connection successful");
+
+	app.listen(port, () => {
+		console.log(`Server started successfully on port ${port}`);
+	})
+}
+
+startServer();
