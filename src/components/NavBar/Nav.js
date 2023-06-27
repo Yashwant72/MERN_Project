@@ -6,8 +6,8 @@ const Nav = (props) => {
   const  log=  props.auth;
   
   return (
-    <nav class="navbar navbar-expand-lg header">
-    <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg header w-100">
+    <div class="container-fluid w-100">
     <a class="navbar-brand brand ms-5" href="#">UrbanNest</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

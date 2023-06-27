@@ -10,16 +10,16 @@ import Dashboard from './components/Dashboard/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [ authState, setAuthState ] =  useState(false);
-  
-	return (
-    <div className="App">
+  const [authState, setAuthState] = useState(false);
+
+  return (
+    <div className="app">
       <BrowserRouter >
-				<Nav auth={authState} />
-				<Routes>
-					<Route path="/" element={<Landing/>}/>
-					<Route path="/buy" element={<Buy/>} />
-				</Routes>
+        <Nav auth={authState} />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/buy" element={<Buy />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
