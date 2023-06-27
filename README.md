@@ -19,6 +19,7 @@ The proxy is set up so the requests can be made from the client directly using f
 
 Required enviroment variables to be present in a `.env` file in the root directory.
 `MONOGODB_URI`
+`JWT_SECRET_KEY`
 
 ### `npm start`
 

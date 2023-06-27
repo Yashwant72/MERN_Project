@@ -1,0 +1,118 @@
+const data = [
+
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=1",
+        price: 100000,
+        address: "VIT Vellore  India",
+        bed: 3,
+        tub: 2,
+        area: 1500,
+        state: "Tamil Nadu",
+        listingStatus: "Active",
+        listingDate: "01/06/23",
+        propertyType: "residential",
+        lat: "12.96972795",
+        lon: "79.16069432788137"
+    },
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=2",
+        price: 150000,
+        address: "Assam  , India",
+        bed: 4,
+        tub: 3,
+        area: 2000,
+        state: "Assam",
+        listingStatus: "Sold",
+        listingDate: "15/05/23",
+        propertyType: "corporate",
+        lat: "26.4073841",
+        lon: "93.2551303"
+    },
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=3",
+        price: 200000,
+        address: "Lucknow , India ",
+        bed: 2,
+        tub: 1,
+        area: 1200,
+        state: "Bihar",
+        listingStatus: "Active",
+        listingDate: "03/06/23",
+        propertyType: "residential",
+        lat: "26.8381",
+        lon: "80.9346001"
+    },
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=4",
+        price: 250000,
+        address: "Chhattisgarh, India",
+        bed: 3,
+        tub: 2,
+        area: 1800,
+        state: "Chhattisgarh",
+        listingStatus: "Active",
+        listingDate: "19/05/23",
+        propertyType: "corporate",
+        lat: "21.6637359",
+        lon: "81.8406351"
+    },
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=5",
+        price: 300000,
+        address: "Goa,  India",
+        bed: 4,
+        tub: 3,
+        area: 2200,
+        state: "Goa",
+        listingStatus: "Sold",
+        listingDate: "07/06/23",
+        propertyType: "residential",
+        lat: "15.3004543",
+        lon: "74.0855134"
+    },
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=6",
+        price: 350000,
+        address: "Gujarat, India",
+        bed: 3,
+        tub: 2,
+        area: 1600,
+        state: "Gujarat",
+        listingStatus: "Active",
+        listingDate: "09/05/23",
+        propertyType: "corporate",
+        lat: "22.3850051",
+        lon: "71.745261"
+    },
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=7",
+        price: 400000,
+        address: "Panchkula , India",
+        bed: 4,
+        tub: 3,
+        area: 2400,
+        state: "Haryana",
+        listingStatus: "Sold",
+        listingDate: "12/06/23",
+        propertyType: "residential",
+        lat: "30.7137692",
+        lon: "76.86827600027706"
+    },
+    {
+        img: "https://source.unsplash.com/featured/?building&sig=8",
+        price: 450000,
+        address: "Pinjore India",
+        bed: 2,
+        tub: 1,
+        area: 1100,
+        state: "Himachal Pradesh",
+        listingStatus: "Active",
+        listingDate: "05/05/23",
+        propertyType: "corporate",
+        lat: "30.8042411",
+        lon: "76.9149498"
+    },
+
+]
+
+export default data

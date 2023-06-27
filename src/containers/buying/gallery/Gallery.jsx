@@ -5,11 +5,14 @@ import buildingData from "../../../assets/dummyData/buildingData";
 
 // console.log(buildingData);
 
-const Gallery = () => {
+const Gallery = (props) => {
+  const filteredBuildingData = buildingData.filter((item) =>
+    item.address.toLowerCase().includes(props.keyword.toLowerCase())
+  );
   return (
     <div className="gallery-container">
       <div className="gallery">
-        {buildingData.map((building, index) => (
+        {filteredBuildingData.map((building, index) => (
           <PropertyCard
             key={index}
             img={building.img}

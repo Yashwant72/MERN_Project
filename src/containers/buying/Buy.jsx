@@ -11,8 +11,8 @@ import filter from "../../assets/icons/filter.png";
 const Buy = () => {
   const [searchText, setSearchText] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [showList, setShowList] = useState(false);
-  const [showMap, setShowMap] = useState(true);
+  const [showList, setShowList] = useState(true);
+  const [showMap, setShowMap] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
 
   useEffect(() => {
@@ -90,9 +90,9 @@ const Buy = () => {
         </div>
       </div>
       <div className="buy-options-container">
-        {showList && <List />}
+        {showList && <List keyword ={searchText}/>}
         {showMap && <Map />}
-        {showGallery && <Gallery />}
+        {showGallery && <Gallery  keyword ={searchText} />}
       </div>
     </div>
   );

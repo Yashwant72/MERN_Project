@@ -1,0 +1,12 @@
+.header{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.brand{
+    font-family: var(--font-family);
+    font-weight: bolder !important;
+}
+li a{
+    font-family: var(--font-family);
+    color: var(--color-dark) !important;
+    font-weight:500 !important;
+}
