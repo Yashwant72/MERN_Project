@@ -96,17 +96,17 @@ h1 {
 }
 
 .create-button:hover {
-  color: var(--color-contrast);
-  background-color: var(--color-light);
+    background-color: var(--color-contrast);
+    color: var(--color-light);
 }
 
 .create-icon {
   color: var(--color-light);
 }
 
-.create-icon:hover {
+/* .create-icon:hover {
   color: var(--color-dark);
-}
+} */
 
 .card-login {
   /* background-color: red; */
