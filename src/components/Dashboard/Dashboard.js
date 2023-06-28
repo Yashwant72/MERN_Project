@@ -9,9 +9,14 @@ import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
 
+import CustomCarousel from '../Carousel/CustomCarousel';
+
+
 const Dashboard = () => {
-  // const filteredBuildingData = buildingData.filter((item) =>item.address.toLowerCase().includes(props.keyword.toLowerCase())
-  // );
+  //TODO change to props
+  const keyword = "";
+  const filteredBuildingData = buildingData.filter((item) => item.address.toLowerCase().includes(keyword.toLowerCase())
+  );
   const [active, setActive] = useState(0);
   const handleClick = (e) => {
     setActive(e);
@@ -26,25 +31,27 @@ const Dashboard = () => {
 
         <hr class="dashed-line"></hr>
 
-        <div className='dash-buttons'>
-          <button className={active == 1 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(1) }}>
-            Bookmarked
-            <span className='dash-icon'><FontAwesomeIcon icon={faBookmark} /></span></button>
+        <div className='dash-body'>
 
-          <button className={active == 2 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(2) }}>
-            Recently Viewed
-            <span className='dash-icon'><FontAwesomeIcon icon={faClock} /></span></button>
+          <div className='dash-buttons'>
+            <button className={active == 1 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(1) }}>
+              Bookmarked
+              <span className='dash-icon'><FontAwesomeIcon icon={faBookmark} /></span></button>
 
-          <button className={active == 3 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(3) }}>
-            Selling
-            <span className='dash-icon'><FontAwesomeIcon icon={faSackDollar} /></span></button>
+            <button className={active == 2 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(2) }}>
+              Recently Viewed
+              <span className='dash-icon'><FontAwesomeIcon icon={faClock} /></span></button>
+
+            <button className={active == 3 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(3) }}>
+              Selling
+              <span className='dash-icon'><FontAwesomeIcon icon={faSackDollar} /></span></button>
+          </div>
+
+          <div className='dash-carousel'>
+            <CustomCarousel />
+          </div>
+
         </div>
-
-        <div className='dash-carousel'>
-          {/* Carousel part comes here */}
-          {/* swiper and slick both libraries are already installed */}
-        </div>
-        
       </div>
     </section>
   )
