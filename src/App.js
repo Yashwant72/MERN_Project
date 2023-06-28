@@ -11,15 +11,22 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [authState, setAuthState] = useState(false);
+  const handleSignIn = () => {
+    setAuthState(true);
+  };
+
+  const handleSignOut = () => {
+    setAuthState(!authState);
+  };
 
   return (
     <div className="app">
       <BrowserRouter >
-        <Nav auth={authState} />
+        <Nav auth={authState} handleSignIn={handleSignIn} handleSignOut={handleSignOut} />
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />
           <Route path="/buy" element={<Buy />} />
-          <Route path="/dashboard" element={<Dashboard/>} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -36,7 +36,7 @@ const CustomCarousel = () => {
           effect="slide" // Set the desired transition effect
           speed={1000} // Set the speed of the transition
           onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
+          // onSlideChange={() => console.log("slide change")}
         >
           {filteredBuildingData.map((building, index) => (
             <SwiperSlide key={index}>

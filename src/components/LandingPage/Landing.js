@@ -9,7 +9,7 @@ import './landing.css';
 
 // import image from '../../assets/images/landingBg.jpg';
 import image from '../../assets/images/landingBgAlt.png'
-const Landing = () => {
+const Landing = (props) => {
   return (
     <section className='landing-page-container' id='#home'
       style={{ backgroundImage: `url(${image})` }}>
