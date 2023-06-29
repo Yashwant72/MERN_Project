@@ -39,13 +39,17 @@ const userSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now()
 	},
+	selling: [{
+		type: mongoose.SchemaTypes.ObjectId,
+		ref: 'Property'
+	}],
 	bookmarked: [{
 		type: mongoose.SchemaTypes.ObjectId,
-		ref: 'Properties'
+		ref: 'Property'
 	}], 
 	recents: [{
 		type: mongoose.SchemaTypes.ObjectId,
-		ref: 'Properties'
+		ref: 'Property'
 	}],
 	tokens: [{
 		type: String
@@ -62,20 +66,20 @@ userSchema.methods.generateAuthToken = async function () {
 	return token;
 }
 
-// userSchema.methods.toJSON = function () {
-// 	const user = this;
-// 	const userObject = user.toObject();
+userSchema.methods.toJSON = function () {
+	const user = this;
+	const userObject = user.toObject();
 
-// 	if (userObject.avatar) {
-// 		delete userObject.avatar;
-// 	}
+	if (userObject.avatar) {
+		delete userObject.avatar;
+	}
 	
-// 	delete userObject.__v;
-// 	delete userObject.tokens;
-// 	delete userObject.password;
+	delete userObject.__v;
+	delete userObject.tokens;
+	delete userObject.password;
 
-// 	return userObject;
-// }
+	return userObject;
+}
 
 userSchema.statics.findByCredentials = async function (email, password) {
 	const user = await User.findOne({ email });
