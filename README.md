@@ -17,9 +17,9 @@ Open [http://localhost:8080](http://localhost:8080) to make API calls to the ser
 
 The proxy is set up so the requests can be made from the client directly using fetch("/api/`route`").
 
-Required enviroment variables to be present in a `.env` file in the root directory.
-`MONOGODB_URI`
-`JWT_SECRET_KEY`
+Required enviroment variables to be present in a `.env` file in the root directory.\
+`MONOGODB_URI`: Connection string to a local mongoDB database\
+`JWT_SECRET_KEY`: Any random string sort of like a password to encrypt and decrypt the token
 
 ### `npm start`
 

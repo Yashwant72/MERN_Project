@@ -1,5 +1,5 @@
 import React from "react";
-import "./PropertyCard.css";
+import "./propertyCard.css";
 import tub from "../assets/icons/tub.png";
 import bed from "../assets/icons/bed.png";
 import area from "../assets/icons/area.png";
