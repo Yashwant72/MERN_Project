@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+/server/json
+
 # production
 /build
 

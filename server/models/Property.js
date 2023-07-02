@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const propertySchema = new mongoose.Schema({
     currentOwner: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: "User",
         required: true
     },
@@ -18,14 +18,15 @@ const propertySchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    image: {
+    images: {
         type: String,
-        required: true,
+				required: true
     },
     type: {
         type: String,
         required: true,
-        enum: ['Residential', 'Commercial', 'Industrial', 'Land']
+				lowercase: true,
+        enum: ['residential', 'commercial', 'industrial', 'land', 'corporate']
     },
     beds: {
         type: Number,

@@ -26,15 +26,15 @@ userRouter.post("/signup", async (req, res) => {
 	try {
 		const existing = await User.findOne({ email: req.body.email });
 		if (existing) {
-			res.status(400).json({ message: "User already exists" });
+			return res.status(400).send({ message: "User already exists" });
 		}
 
 		const newUser = await new User(req.body).save();
 		
 		const token = await newUser.generateAuthToken();
-		res.status(201).json({ user: newUser, token })
+		res.send({ user: newUser, token })
 	} catch ({ message }) {
-		res.status(500).json({ message });
+		res.status(500).send({ message });
 	}
 })
 
@@ -45,9 +45,9 @@ userRouter.post("/signin", async (req, res) => {
 		const currentUser = await User.findByCredentials(email, password);
 
 		const token = await currentUser.generateAuthToken();
-		res.status(201).json({ token })
+		res.send({ token })
 	} catch ({ message }) {
-		res.status(500).json({ message });
+		res.status(500).send({ message });
 	}
 })
 
@@ -58,15 +58,15 @@ userRouter.post("/signout", auth, async (req, res) => {
 		})
 
 		await req.user.save();
-		res.status(200).json({ message: "Signed out successfully" });
+		res.send({ message: "Signed out successfully" });
 	} catch ({ message }) {
-		res.status(500).json({ message });
+		res.status(500).send({ message });
 	}
 })
 
-userRouter.get("/me", auth, async (req, res) => {
+userRouter.get("/me", auth, (req, res) => {
 	try {
-		res.status(201).json(req.user);
+		res.send(req.user);
 	} catch ({ message }) {
 		res.status(500).send({ message });
 	}
@@ -80,7 +80,7 @@ userRouter.patch("/me", auth, async (req, res) => {
 		
 		const valid = updatedFields.every((update) => allowed.includes(update));
 		if (!valid) {
-			res.status(400).json({ message: "Invalid updates given" });
+			return res.status(400).send({ message: "Invalid updates given" });
 		}
 
 		updatedFields.forEach((field) => {
@@ -88,25 +88,25 @@ userRouter.patch("/me", auth, async (req, res) => {
 		})
 		await req.user.save();
 
-		res.status(200).json(req.user);
+		res.send(req.user);
 	} catch ({ message }) {
-		res.status(500).json({ message });
+		res.status(500).send({ message });
 	}
 })
 
 userRouter.delete("/me", auth, async (req, res) => {
 	try {
 		await User.findByIdAndDelete(req.userId);
-		res.status(200).json({ message: "Profile deleted successfully" });
+		res.send({ message: "Profile deleted successfully" });
 	} catch ({ message }) {
 		res.status(500).send({ message });
 	}
 })
 
-userRouter.post("/me/avatar", auth, upload.single("avatar"), async (req, res) => {
+userRouter.post("/avatar", auth, upload.single("avatar"), async (req, res) => {
 	try {
 		if (!req.file) {
-			res.status(400).json({ message: "No file uploaded" });
+			return res.status(400).send({ message: "No file uploaded" });
 		}
 		
 		const avatarBuffer = req.file.buffer;
@@ -114,23 +114,142 @@ userRouter.post("/me/avatar", auth, upload.single("avatar"), async (req, res) =>
 
 		await req.user.save();
 
-		res.setHeader('Content-Type', 'image/jpeg');
-		res.setHeader('Content-Length', avatarBuffer.length);
-		res.status(201).send(avatarBuffer);
+		res.format({
+			'image/jpeg': () => {
+				res.send(avatarBuffer);
+			}
+		})
 	} catch ({ message }) {
-		res.status(500).json({ message });
+		res.status(500).send({ message });
 	}
 })
 
-userRouter.get("/me/avatar", auth, async (req, res) => {
+userRouter.get("/avatar", auth, async (req, res) => {
 	try {
 		const avatarBuffer = req.user.avatar;
 
-		res.setHeader('Content-Type', 'image/jpeg');
-		res.setHeader('Content-Length', avatarBuffer.length);
-		res.status(201).send(avatarBuffer);
+		res.format({
+			'image/jpeg': () => {
+				res.send(avatarBuffer);
+			}
+		})
 	} catch ({ message }) {
 		res.status(500).send({ message })
+	}
+})
+
+userRouter.get("/seller/:id", auth, async (req, res) => {
+	try {
+		const user = await User.findById(req.params.id);
+		if (user.tokens.includes(req.token)) {
+			return res.status(400).send({ message: "Self profile" });
+		}
+
+		res.format({
+			'application/json': () => {
+				res.send(user);
+			},
+			'image/jpeg': () => {
+				res.send(user.avatar);
+			}
+		})
+	} catch ({ message }) {
+		res.status(500).send({ message });
+	}
+})
+
+userRouter.post("/bookmarks", auth, async (req, res) => {
+	try {
+		const { property } = req.body;
+		if (req.user.bookmarked.includes(property)) {
+			return res.status(400).send({ message: "Already in bookmarks" })
+		}
+
+		req.user.bookmarked = req.user.bookmarked.concat(property);
+
+		await req.user.save();
+		res.send({ message: "Bookmark added successfully" })
+	} catch ({ message }) {
+		res.status(500).send({ message });
+	}
+})
+
+userRouter.post("/recents", auth, async (req, res) => {
+	try {
+		const { property } = req.body;
+		if (req.user.recents.includes(property)) {
+			return res.status(400).send({ message: "Already in recents" })
+		}
+
+		req.user.recents = req.user.recents.concat(property);
+
+		await req.user.save();
+		res.send({ message: "Recents updated successfully" })
+	} catch ({ message }) {
+		res.status(500).send({ message });
+	}
+})
+
+userRouter.delete("/bookmarks", auth, async (req, res) => {
+	try {
+		const { property } = req.body;
+		if (!req.user.bookmarked.includes(property)) {
+			return res.status(404).send({ message: "Bookmark not found" });
+		}
+
+		req.user.bookmarked = req.user.bookmarked.filter((bookmark) => {
+			return bookmark != property;
+		})
+		await req.user.save();
+
+		res.send({ message: "Bookmark removed successfully" });
+	} catch ({ message }) {
+		res.status(500).send({ message });
+	}
+})
+
+userRouter.get("/bookmarks", auth, async (req, res) => {
+	try {
+		if (!req.user.bookmarked.length) {
+			return res.status(404).send({ message: "No properties found" });
+		}
+
+		if (!req.user.populated("bookmarked")) {
+			await req.user.populate("bookmarked");
+		}
+		res.send(req.user.bookmarked);
+	} catch ({ message }) {
+		res.status(500).send({ message });
+	}
+})
+
+userRouter.get("/recents", auth, async (req, res) => {
+	try {
+		if (!req.user.recents.length) {
+			return res.status(404).send({ message: "No properties found" });
+		}
+
+		if (!req.user.populated("recents")) {
+			await req.user.populate("recents");
+		}
+		res.send(req.user.recents);
+	} catch ({ message }) {
+		res.status(500).send({ message });
+	}
+})
+
+userRouter.get("/selling", auth, async (req, res) => {
+	try {
+		if (!req.user.selling.length) {
+			return res.status(404).send({ message: "No properties found" });
+		}
+
+		if (!req.user.populated("selling")) {
+			await req.user.populate("selling");
+		}
+		res.send(req.user.selling);
+	} catch ({ message }) {
+		res.status(500).send({ message });
 	}
 })
 

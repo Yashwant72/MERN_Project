@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Property = require("./property");
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
@@ -41,15 +42,15 @@ const userSchema = new mongoose.Schema({
 	},
 	selling: [{
 		type: mongoose.SchemaTypes.ObjectId,
-		ref: 'Property'
+		ref: "Property"
 	}],
 	bookmarked: [{
 		type: mongoose.SchemaTypes.ObjectId,
-		ref: 'Property'
+		ref: "Property"
 	}], 
 	recents: [{
 		type: mongoose.SchemaTypes.ObjectId,
-		ref: 'Property'
+		ref: "Property"
 	}],
 	tokens: [{
 		type: String
@@ -78,6 +79,10 @@ userSchema.methods.toJSON = function () {
 	delete userObject.tokens;
 	delete userObject.password;
 
+	delete userObject.bookmarked;
+	delete userObject.recents;
+	delete userObject.selling;
+
 	return userObject;
 }
 
@@ -104,6 +109,6 @@ userSchema.pre("save", async function (next) {
 	next();
 })
 
-const User = mongoose.model("Users", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
