@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PropertyCard from '../PropertyCard'
 import buildingData from '../../assets/dummyData//buildingData';
 
 import './dashboard.css';

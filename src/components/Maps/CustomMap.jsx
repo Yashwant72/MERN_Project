@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import buildingData from "../assets/dummyData/buildingData";
+import buildingData from "../../assets/dummyData/buildingData";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { icon as leafletIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import MarkerIcon from "../assets/icons/marker.png";
-import data from "../assets/dummyData/data";
+import MarkerIcon from "../../assets/icons/marker.png";
+import data from "../../assets/dummyData/data";
 
 const CustomMap = ({ selectedMarker }) => {
   const mapRef = useRef();
@@ -15,7 +15,7 @@ const CustomMap = ({ selectedMarker }) => {
   });
 
   // to get initial user location ---------------->
-
+  // TODO make a new custom sidelist popup component
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

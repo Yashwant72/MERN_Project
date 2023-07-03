@@ -1,12 +1,12 @@
 import React from "react";
 import "./gallery.css";
-import PropertyCard from "../../../components/PropertyCard";
+import PropertyCard from "../../../components/Cards/PropertyCard";
 import buildingData from "../../../assets/dummyData/buildingData";
 
 // console.log(buildingData);
 
 const Gallery = (props) => {
-  const filteredBuildingData = buildingData.filter((item) =>
+  const filteredBuildingData = props.data.filter((item) =>
     item.address.toLowerCase().includes(props.keyword.toLowerCase())
   );
   return (
@@ -21,6 +21,7 @@ const Gallery = (props) => {
             bed={building.bed}
             tub={building.tub}
             area={building.area}
+            onClick={() => props.onClick(building.address)}
           />
         ))}
       </div>

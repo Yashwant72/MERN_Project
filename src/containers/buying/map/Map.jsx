@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./map.css";
-import SideList from "../../../components/SideList";
+import SideList from "../../../components/Lists/SideList";
 // import buildingData from ".././../../assets/dummyData/buildingData";
 import data from "../../../assets/dummyData/data";
-import GeocodingExample from "../../../components/GeocodingExample";
+// import GeocodingExample from "../../../components/GeocodingExample";
 import axios from "axios";
-import CustomMap from "../../../components/CustomMap";
+import CustomMap from "../../../components/Maps/CustomMap";
 
 const Map = () => {
   const [latitude, setLatitude] = useState(null);

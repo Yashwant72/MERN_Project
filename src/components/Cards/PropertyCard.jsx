@@ -1,12 +1,16 @@
 import React from "react";
-import "./propertyCard.css";
-import tub from "../assets/icons/tub.png";
-import bed from "../assets/icons/bed.png";
-import area from "../assets/icons/area.png";
+import "./PropertyCard.css";
+import tub from "../../assets/icons/tub.png";
+import bed from "../../assets/icons/bed.png";
+import area from "../../assets/icons/area.png";
 const PropertyCard = (props) => {
+  const handleClick = () => {
+    props.onClick(props.address); // Pass the address to the parent component's click handler
+  };
+
   return (
     <div className="card-container">
-      <div className="card">
+      <div className="card" onClick={handleClick}>
         <div className="card-media">
           <img src={props.img} alt="Building" width="250px" height="150px" />
         </div>

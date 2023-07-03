@@ -1,5 +1,4 @@
 import './App.css';
-import CustomMap from './components/CustomMap';
 import { useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min';
@@ -8,6 +7,7 @@ import Buy from './containers/buying/Buy';
 import Landing from './components/LandingPage/Landing';
 import Dashboard from './components/Dashboard/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './containers/home/Home';
 
 function App() {
   const [authState, setAuthState] = useState(false);
@@ -23,11 +23,17 @@ function App() {
     <div className="app">
       <BrowserRouter >
         <Nav auth={authState} handleSignIn={handleSignIn} handleSignOut={handleSignOut} />
-        <Routes>
-          <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />
-          <Route path="/buy" element={<Buy />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+
+        <div style={{ marginTop: '80px', width: '100%' }}>
+
+          <Routes>
+            <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />
+            <Route path="/home" element={<Home />} />
+
+            <Route path="/buy" element={<Buy />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );

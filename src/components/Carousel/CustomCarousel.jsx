@@ -4,7 +4,7 @@ import SwiperCore, { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/swiper-bundle.css";
 import "./customCarousel.css";
 import buildingData from "../../assets/dummyData/buildingData";
-import PropertyCard from "../PropertyCard";
+import PropertyCard from "../Cards/PropertyCard";
 
 // Install Swiper modules
 SwiperCore.use([Navigation, Pagination, Autoplay]);
@@ -15,8 +15,6 @@ const CustomCarousel = () => {
   const filteredBuildingData = buildingData.filter((item) =>
     item.address.toLowerCase().includes(keyword.toLowerCase())
   );
-
-  
 
   return (
     <div className="carousel-container">

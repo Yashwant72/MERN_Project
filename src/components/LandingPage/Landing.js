@@ -8,7 +8,9 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import './landing.css';
 
 // import image from '../../assets/images/landingBg.jpg';
-import image from '../../assets/images/landingBgAlt.png'
+// import image from '../../assets/images/landingBgAlt.png'
+import image from '../../assets/images/landingImg.jpg'
+
 const Landing = (props) => {
   return (
     <section className='landing-page-container' id='#home'
@@ -25,7 +27,7 @@ const Landing = (props) => {
             {/* search button */}
             <button className='search-button'>
 
-            <span className='search-icon'><FontAwesomeIcon icon={faMagnifyingGlass} size="lg" /></span>
+              <span className='search-icon'><FontAwesomeIcon icon={faMagnifyingGlass} size="lg" /></span>
             </button>
           </div>
 

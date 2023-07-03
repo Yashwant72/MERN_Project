@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import List from "./list/List";
 import Map from "./map/Map";
 import Gallery from "./gallery/Gallery";
+import buildingData from "../../assets/dummyData/buildingData";
 // import Gallery from "../../components/Gallery";
 
 import filter from "../../assets/icons/filter.png";
@@ -92,7 +93,7 @@ const Buy = () => {
       <div className="buy-options-container">
         {showList && <List keyword ={searchText}/>}
         {showMap && <Map />}
-        {showGallery && <Gallery  keyword ={searchText} />}
+        {showGallery && <Gallery  keyword ={searchText} data={buildingData}/>}
       </div>
     </div>
   );

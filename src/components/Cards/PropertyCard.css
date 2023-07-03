@@ -8,6 +8,7 @@
   /* box-shadow: 2px 3px 7px 0px rgba(0, 0, 0, 0.5); */
   transition: all 0.2s ease;
   border-radius: 4px;
+  margin: 10px 0px;
 }
 .card-container:hover {
   box-shadow: 8px 8px 15px 0px rgba(0, 0, 0, 0.55);
@@ -15,24 +16,30 @@
 .card {
   display: flex;
   flex-direction: column;
-
+  width: 250px;
   align-items: flex-start;
   justify-content: center;
-  background-color: red;
+  /* background-color: red; */
   /* padding: 16px; */
   border-radius: 4px;
   gap: 8px;
   /* padding: 16px; */
+  /* min-height: 400px; */
   background-color: var(--color-light);
+  /* border: 1px solid var(--color-dark-subtle); */
+  border: none;
+  /* outline: none; */
 }
 
 .card-media img {
   border-radius: 4px 4px 0px 0px;
+  max-width: 250px;
 }
 .card-content {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 250px;
   padding: 8px 16px;
 }
 .card-text {
