@@ -1,13 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./customMap.css";
 import axios from "axios";
 import buildingData from "../../assets/dummyData/buildingData";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  Tooltip,
+} from "react-leaflet";
 import { icon as leafletIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerIcon from "../../assets/icons/marker.png";
 import data from "../../assets/dummyData/data";
+import CustomPopup from "./CustomPopup";
 
-const CustomMap = ({ selectedMarker }) => {
+const CustomMap = ({ selectedMarker, popupStyle }) => {
   const mapRef = useRef();
   const [coordinates, setCoordinates] = useState({
     latitude: 20.5937,
@@ -92,7 +101,7 @@ const CustomMap = ({ selectedMarker }) => {
   }, [selectedMarker]);
 
   // to flyto a new marker on change of address ------------------------->
-  const CustomMarker = ({ item }) => {
+  const CustomMarker = ({ isActive, item }) => {
     const map = useMap();
 
     useEffect(() => {
@@ -113,12 +122,24 @@ const CustomMap = ({ selectedMarker }) => {
           popupAnchor: [0, -32],
         })}
       >
-        <Popup>
-          item
-          <p>Address: {item.address}</p>
-          <p>Latitude: {item.lat}</p>
-          <p>Longitude: {item.lon}</p>
-        </Popup>
+        <Tooltip
+          className={popupStyle ? "list-popup" : ""}
+          direction="top"
+          offset={[0, -20]}
+          opacity={1}
+          permanent
+        >
+          {popupStyle ? (
+            <CustomPopup item={item} />
+          ) : (
+            <div>
+              <p>Address: {item.address}</p>
+              {/* <p>Latitude: {item.lat}</p>
+              <p>Longitude: {item.lon}</p> */}
+            </div>
+          )}
+        </Tooltip>
+        <Popup className={popupStyle ? "list-popup" : ""} autoPan={true} />
       </Marker>
     );
   };
@@ -133,7 +154,7 @@ const CustomMap = ({ selectedMarker }) => {
   return (
     <MapContainer
       center={[coordinates.latitude, coordinates.longitude]}
-      zoom={10}
+      zoom={8}
       style={{ width: "100%", height: "750px" }}
       {...mapOptions}
       whenCreated={(mapInstance) => {
@@ -156,17 +177,17 @@ const CustomMap = ({ selectedMarker }) => {
             popupAnchor: [0, -32],
           })}
         >
-          <Popup>
+          <Popup />
+
+          <Tooltip direction="top" offset={[0, -20]} opacity={1} permanent>
             Your Location
-            <p>Latitude: {coordinates.latitude}</p>
-            <p>Longitude: {coordinates.longitude}</p>
-          </Popup>
+          </Tooltip>
         </Marker>
       )}
 
       {/* map the data array with custom marker to flyto eachother */}
       {data.map((item, index) => (
-        <CustomMarker key={index} item={item} />
+        <CustomMarker key={index} item={item} isActive />
       ))}
     </MapContainer>
   );

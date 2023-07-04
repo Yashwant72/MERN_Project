@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import image from "../../assets/images/landingBgAlt.png";
 // import image from "../../assets/images/landingImg.jpg";
-import data from '../../assets/dummyData/data'
+import data from "../../assets/dummyData/data";
 import CustomMap from "../../components/Maps/CustomMap";
 import Gallery from "../buying/gallery/Gallery";
 import axios from "axios";
@@ -103,10 +103,10 @@ const Home = () => {
 
         <div className="home-section2">
           <div className="home-section2-cards">
-            <Gallery keyword={""} onClick = {handleMarkerClick} data={data}/>
+            <Gallery keyword={""} onClick={handleMarkerClick} data={data} />
           </div>
           <div className="home-section2-map">
-            <CustomMap selectedMarker={selectedMarker} />
+            <CustomMap selectedMarker={selectedMarker} popupStyle={true} />
           </div>
         </div>
       </div>
