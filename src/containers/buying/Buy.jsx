@@ -9,12 +9,13 @@ import buildingData from "../../assets/dummyData/buildingData";
 // import Gallery from "../../components/Gallery";
 
 import filter from "../../assets/icons/filter.png";
+import PropertyDetail from "./property/PropertyDetail";
 const Buy = () => {
   const [searchText, setSearchText] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [showList, setShowList] = useState(true);
+  const [showList, setShowList] = useState(false);
   const [showMap, setShowMap] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
+  const [showGallery, setShowGallery] = useState(true);
 
   useEffect(() => {
     let timer;
@@ -91,9 +92,10 @@ const Buy = () => {
         </div>
       </div>
       <div className="buy-options-container">
-        {showList && <List keyword ={searchText}/>}
+        {showList && <List keyword={searchText} />}
         {showMap && <Map />}
-        {showGallery && <Gallery  keyword ={searchText} data={buildingData}/>}
+        {/* {showGallery && <Gallery keyword={searchText} data={buildingData} />} */}
+        {showGallery && <PropertyDetail />}
       </div>
     </div>
   );

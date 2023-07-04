@@ -1,0 +1,218 @@
+.property-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.property {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px;
+  /* background-color: grey; */
+  padding: 10px;
+}
+.property-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1920px;
+  max-height: 650px;
+  overflow: hidden;
+}
+
+.property-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+}
+.property-content {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  /* background-color: aqua; */
+  background-color: var(--color-light);
+  padding: 10px;
+}
+
+.property-content-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 2.25;
+  /* background-color: brown; */
+  gap: 15px;
+  padding: 10px;
+}
+.property-content-details-header {
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: blue; */
+  width: 100%;
+}
+.property-content-details-header-title {
+  font-family: var(--font-family);
+  color: var(--color-dark);
+
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.property-content-details-header-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  color: var(--color-dark);
+  font-size: 24px;
+  font-weight: normal;
+  gap: 10px;
+}
+
+.custom-rating .MuiRating-iconFilled {
+  color: var(--color-contrast);
+}
+.custom-rating .MuiRating-iconEmpty {
+  color: var(--color-dark-subtle);
+}
+
+.property-content-details-address {
+  padding: 5px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* background-color: aqua; */
+  font-family: var(--font-family);
+  color: var(--color-dark);
+
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.property-content-details-description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px 0px;
+  /* background-color: aqua; */
+  font-family: var(--font-family);
+  color: var(--color-dark);
+
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.property-content-details-address img {
+  height: 24px;
+  width: 24px;
+}
+
+.property-content-details-images {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+
+.property-content-details-images img {
+  border-radius: 20px;
+}
+
+.property-content-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  background-color: var(--color-light);
+  /* background-color: beige; */
+  border-radius: 20px;
+  gap: 20px;
+  padding: 20px;
+  box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.property-content-card-info {
+  font-family: var(--font-family);
+  color: var(--color-dark);
+
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.property-content-card-owner {
+  font-family: var(--font-family);
+  color: var(--color-dark);
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.property-content-card-icons,
+.property-content-card-buttons,
+.property-content-card-numbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  width: 100%;
+  padding: 5px 0px;
+
+}
+.property-content-card-area,
+.property-content-card-tub,
+.property-content-card-bed {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--color-dark);
+}
+
+.property-content-card-numbers {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.property-content-card-price-title,
+.property-content-card-date-title {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--color-dark-subtle);
+}
+
+.property-content-card-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* border: 5px; */
+  border-radius: 5px;
+}
