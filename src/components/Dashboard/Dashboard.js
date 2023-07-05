@@ -47,7 +47,7 @@ const Dashboard = () => {
           </div>
 
           <div className='dash-carousel'>
-            <CustomCarousel />
+            <CustomCarousel forMap={false}/>
           </div>
 
         </div>

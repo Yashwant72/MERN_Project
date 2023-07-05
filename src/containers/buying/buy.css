@@ -22,6 +22,15 @@
   /* flex-wrap: wrap; */
 }
 
+.buy-backdrop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 90vh; */
+  width: 98%;
+}
+
 .buy-input {
   width: 60%;
   max-width: 600px;

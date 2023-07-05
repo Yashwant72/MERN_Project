@@ -8,38 +8,59 @@
 
 .property {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
   padding: 10px;
-  /* background-color: grey; */
-  padding: 10px;
+  background-color: var(--color-light);
+  border-radius: 20px;
+  /* padding: 20px 20px; */
 }
 .property-image {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 1920px;
-  max-height: 650px;
+  /* max-width: 1920px; */
+  max-height: 900px;
+  width: 100%;
   overflow: hidden;
+  flex: 1;
+  border-radius: 20px;
+  /* margin: 20px 10px; */
 }
 
 .property-image img {
-  width: 100%;
+  /* width: 100%; */
+  width: auto;
   height: auto;
+  /* height: auto; */
+  /* max-height: 900px; */
   object-fit: contain;
   border-radius: 20px;
 }
 .property-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex: 1;
+max-height: 900px;
   gap: 50px;
   align-items: center;
   justify-content: center;
   /* background-color: aqua; */
   background-color: var(--color-light);
-  padding: 10px;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+.property-content-bottom {
+  display: flex;
+  flex-direction: row;
+  /* background-color: red; */
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 20px;
+  gap: 20px;
 }
 
 .property-content-details {
@@ -88,7 +109,7 @@
 }
 
 .property-content-details-address {
-  padding: 5px 0px;
+  /* padding: 5px 0px; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -98,7 +119,7 @@
   font-family: var(--font-family);
   color: var(--color-dark);
 
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
 }
 
@@ -108,28 +129,32 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 5px 0px;
+  /* padding: 5px 0px; */
   /* background-color: aqua; */
   font-family: var(--font-family);
   color: var(--color-dark);
 
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
 }
 
 .property-content-details-address img {
-  height: 24px;
-  width: 24px;
+  height: 20px;
+  width: 20px;
 }
 
 .property-content-details-images {
+  /* padding: 10px 20px; */
   display: flex;
   flex-direction: row;
   width: 100%;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px 0px;
+  justify-content: center;
+  flex: 1.5;
+  flex-wrap: wrap;
+
+  /* padding: 5px 0px; */
 }
 
 .property-content-details-images img {
@@ -176,7 +201,6 @@
   gap: 20px;
   width: 100%;
   padding: 5px 0px;
-
 }
 .property-content-card-area,
 .property-content-card-tub,

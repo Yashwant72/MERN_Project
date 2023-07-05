@@ -10,12 +10,20 @@ import buildingData from "../../assets/dummyData/buildingData";
 
 import filter from "../../assets/icons/filter.png";
 import PropertyDetail from "./property/PropertyDetail";
+import { Backdrop } from "@mui/material";
 const Buy = () => {
   const [searchText, setSearchText] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showList, setShowList] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [showGallery, setShowGallery] = useState(true);
+  const [openBackdrop, setOpenBackdrop] = useState(true);
+  const handleClose = () => {
+    setOpenBackdrop(false);
+  };
+  const handleOpen = () => {
+    setOpenBackdrop(true);
+  };
 
   useEffect(() => {
     let timer;
@@ -94,9 +102,28 @@ const Buy = () => {
       <div className="buy-options-container">
         {showList && <List keyword={searchText} />}
         {showMap && <Map />}
-        {/* {showGallery && <Gallery keyword={searchText} data={buildingData} />} */}
-        {showGallery && <PropertyDetail />}
+        {showGallery && (
+          <Gallery
+            keyword={searchText}
+            data={buildingData}
+            map={false}
+            onClick={handleOpen}
+          />
+        )}
+        {/* {showGallery && <PropertyDetail />} */}
       </div>
+      {/* <Backdrop
+        sx={{
+          color: "var(--color-subtle)",
+          zIndex: "90",
+        }}
+        open={openBackdrop}
+        onClick={handleClose}
+      >
+        <div className="buy-backdrop">
+          <PropertyDetail />
+        </div>
+      </Backdrop> */}
     </div>
   );
 };

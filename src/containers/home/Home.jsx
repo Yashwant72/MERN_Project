@@ -103,7 +103,7 @@ const Home = () => {
 
         <div className="home-section2">
           <div className="home-section2-cards">
-            <Gallery keyword={""} onClick={handleMarkerClick} data={data} />
+            <Gallery keyword={""} onClick={handleMarkerClick} data={data} map={true}/>
           </div>
           <div className="home-section2-map">
             <CustomMap selectedMarker={selectedMarker} popupStyle={true} />
