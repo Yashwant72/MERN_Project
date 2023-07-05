@@ -6,6 +6,8 @@ import data from "../../../assets/dummyData/data";
 // import GeocodingExample from "../../../components/GeocodingExample";
 import axios from "axios";
 import CustomMap from "../../../components/Maps/CustomMap";
+import { Backdrop } from "@mui/material";
+import PropertyDetail from "../property/PropertyDetail";
 
 const Map = () => {
   const [latitude, setLatitude] = useState(null);
@@ -16,6 +18,7 @@ const Map = () => {
   const handleMarkerClick = (marker) => {
     setAddress(marker);
     setSelectedMarker(marker);
+    // handleOpen(item);
   };
 
   useEffect(() => {
@@ -46,13 +49,30 @@ const Map = () => {
   // const handleAddressChange = (e) => {
   //   setAddress(e.target.value);
   // };
+  const [openBackdrop, setOpenBackdrop] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
+  const backdropRef = useRef(null);
+  const handleClose = (event) => {
+    if (backdropRef.current && !backdropRef.current.contains(event.target)) {
+      setOpenBackdrop(false);
+    }
+  };
+  const handleOpen = (property) => {
+    if (property) {
+      setSelectedProperty(property);
+      setOpenBackdrop(true);
+    }
+  };
 
   return (
     <div className="map-container">
       <div className="map">
         <div className="map-left">
           <div className="map-left-content">
-            <CustomMap selectedMarker={selectedMarker} />
+            <CustomMap
+              selectedMarker={selectedMarker}
+              tooltipDirection={"left"}
+            />
           </div>
         </div>
         <div className="map-right">
@@ -71,10 +91,25 @@ const Map = () => {
                   listingStatus={item.listingStatus}
                   listingDate={item.listingDate}
                   propertyType={item.propertyType}
-                  onClick={() => handleMarkerClick(item.address)}
+                  onClick={() => handleMarkerClick(item.address, item)}
+                  openProperty={() => handleOpen(item)}
                 />
               ))}
             </div>
+            <Backdrop
+              sx={{
+                color: "var(--color-dark)",
+                zIndex: "90",
+              }}
+              open={openBackdrop}
+              onClick={handleClose}
+            >
+              <div className="buy-backdrop" ref={backdropRef}>
+                {selectedProperty && (
+                  <PropertyDetail building={selectedProperty} />
+                )}
+              </div>
+            </Backdrop>
           </div>
         </div>
       </div>

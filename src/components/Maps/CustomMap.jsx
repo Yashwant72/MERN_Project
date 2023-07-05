@@ -9,6 +9,7 @@ import {
   Popup,
   useMap,
   Tooltip,
+  Circle,
 } from "react-leaflet";
 import { icon as leafletIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -16,7 +17,7 @@ import MarkerIcon from "../../assets/icons/marker.png";
 import data from "../../assets/dummyData/data";
 import CustomPopup from "./CustomPopup";
 
-const CustomMap = ({ selectedMarker, popupStyle }) => {
+const CustomMap = ({ selectedMarker, popupStyle, tooltipDirection }) => {
   const mapRef = useRef();
   const [coordinates, setCoordinates] = useState({
     latitude: 20.5937,
@@ -100,6 +101,14 @@ const CustomMap = ({ selectedMarker, popupStyle }) => {
     }
   }, [selectedMarker]);
 
+  const getOffset = () => {
+    if (tooltipDirection === "left") {
+      return [-10, 0];
+    } else {
+      return [0, -20];
+    }
+  };
+
   // to flyto a new marker on change of address ------------------------->
   const CustomMarker = ({ isActive, item }) => {
     const map = useMap();
@@ -122,10 +131,16 @@ const CustomMap = ({ selectedMarker, popupStyle }) => {
           popupAnchor: [0, -32],
         })}
       >
+        <Circle
+          center={[item.lat, item.lon]}
+          pathOptions={{ fillColor: "blue" }}
+          radius={1000}
+        />
         <Tooltip
           className={popupStyle ? "list-popup" : ""}
-          direction="top"
-          offset={[0, -20]}
+          // direction="top"
+          direction={tooltipDirection}
+          offset={getOffset()}
           opacity={1}
           permanent
         >
@@ -139,7 +154,7 @@ const CustomMap = ({ selectedMarker, popupStyle }) => {
             </div>
           )}
         </Tooltip>
-        <Popup className={popupStyle ? "list-popup" : ""} autoPan={true} />
+        {/* <Popup className={popupStyle ? "list-popup" : ""} autoPan={true} /> */}
       </Marker>
     );
   };
@@ -155,7 +170,7 @@ const CustomMap = ({ selectedMarker, popupStyle }) => {
     <MapContainer
       center={[coordinates.latitude, coordinates.longitude]}
       zoom={8}
-      style={{ width: "100%", height: "750px" }}
+      style={{ width: "100%", height: "800px" }}
       {...mapOptions}
       whenCreated={(mapInstance) => {
         mapRef.current = mapInstance;
@@ -177,11 +192,16 @@ const CustomMap = ({ selectedMarker, popupStyle }) => {
             popupAnchor: [0, -32],
           })}
         >
-          <Popup />
+          {/* <Popup /> */}
 
-          <Tooltip direction="top" offset={[0, -20]} opacity={1} permanent>
+          {/* <Tooltip direction="left" offset={[-10, 0]} opacity={1} permanent>
             Your Location
-          </Tooltip>
+          </Tooltip> */}
+          <Circle
+            center={[coordinates.latitude, coordinates.longitude]}
+            pathOptions={{ fillColor: "var(--color-contrast)" }}
+            radius={1000}
+          />
         </Marker>
       )}
 

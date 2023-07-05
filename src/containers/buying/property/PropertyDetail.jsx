@@ -46,7 +46,7 @@ const PropertyDetail = ({ building }) => {
               tenetur id soluta! Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Nobis minus excepturi, illo, quis, natus hic
               eligendi officia ab molestiae fugit eveniet velit pariatur
-              sapiente eaque amet dicta labore! Iusto, distinctio?
+             
             </div>
             <div className="property-content-bottom">
               <div className="property-content-details-images">

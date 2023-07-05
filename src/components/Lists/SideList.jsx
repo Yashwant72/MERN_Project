@@ -3,7 +3,8 @@ import "./sideList.css";
 import bed from "../../assets/icons/bed.png";
 import tub from "../../assets/icons/tub.png";
 import area from "../../assets/icons/area.png";
-
+import { IconButton } from "@mui/material";
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
 const SideList = (props) => {
   const pricePerUnit = (props.price / props.area).toFixed(2);
   // console.log(pricePerUnit);
@@ -18,6 +19,22 @@ const SideList = (props) => {
         <div className="sideList-col1">
           <div className="sideList-image">
             <img src={props.img} alt="site" />
+          </div>
+          <div className="sideList-more">
+            <IconButton
+              aria-label="delete"
+              style={{
+                color: "var(--color-light)",
+                backgroundColor: "var(--color-dark)",
+                width: "40px",
+                height: "40px",
+                margin: "10px",
+                opacity: 1,
+              }}
+              onClick={props.openProperty}
+            >
+              <ReadMoreIcon sx={{ fontSize: 24 }} />
+            </IconButton>
           </div>
         </div>
         <div className="sideList-col2">

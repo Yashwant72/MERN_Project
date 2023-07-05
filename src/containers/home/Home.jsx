@@ -106,7 +106,7 @@ const Home = () => {
             <Gallery keyword={""} onClick={handleMarkerClick} data={data} map={true}/>
           </div>
           <div className="home-section2-map">
-            <CustomMap selectedMarker={selectedMarker} popupStyle={true} />
+            <CustomMap selectedMarker={selectedMarker} popupStyle={true} tooltipDirection={"top"} />
           </div>
         </div>
       </div>

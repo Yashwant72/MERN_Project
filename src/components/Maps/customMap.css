@@ -16,3 +16,44 @@
 .leaflet-popup-tip {
   display: none !important;
 }
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background-color: var(--color-light) !important;
+  border-color: none !important;
+
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+  color: var(--color-dark) !important;
+  cursor: pointer !important;
+  font-size: 20px !important;
+  outline: none !important;
+  margin: 5px 5px !important;
+  transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background-color: var(--color-contrast) !important;
+  border-color: none !important;
+  color: var(--color-light) !important;
+}
+
+.leaflet-control-zoom-in:active,
+.leaflet-control-zoom-out:active {
+  background-color: var(--color-contrast) !important;
+  border-color: none !important;
+  color: var(--color-light) !important;
+}
+
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: none;
+  background-clip: padding-box;
+}
+.leaflet-control-zoom {
+  border: none !important;
+  padding: 2px;
+  gap: 10px;
+  background-color: var(--color-dark-subtle) !important;
+}

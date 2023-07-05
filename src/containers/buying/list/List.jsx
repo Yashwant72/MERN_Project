@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import buildingData from "../../../assets/dummyData/buildingData";
 import bed from "../../../assets/icons/bed.png";
 import tub from "../../../assets/icons/tub.png";
@@ -6,8 +6,24 @@ import area from "../../../assets/icons/area.png";
 import "./List.css";
 // import arrowUp from "../../../assets/icons/arrowUp.png";
 import arrowDown from "../../../assets/icons/arrowDown.png";
+import { Backdrop } from "@mui/material";
+import PropertyDetail from "../property/PropertyDetail";
 
 const List = (props) => {
+  const [openBackdrop, setOpenBackdrop] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
+  const backdropRef = useRef(null);
+  const handleClose = (event) => {
+    if (backdropRef.current && !backdropRef.current.contains(event.target)) {
+      setOpenBackdrop(false);
+    }
+  };
+  const handleOpen = (property) => {
+    if (property) {
+      setSelectedProperty(property);
+      setOpenBackdrop(true);
+    }
+  };
   const [sortColumn, setSortColumn] = useState("price");
 
   const [sortOrder, setSortOrder] = useState("asc");
@@ -198,7 +214,11 @@ const List = (props) => {
           </thead>
           <tbody>
             {filteredBuildingData.map((item, index) => (
-              <tr className="listRow" key={index}>
+              <tr
+                className="listRow"
+                key={index}
+                onClick={() => handleOpen(item)}
+              >
                 <td className="listRow-image">
                   <img src={item.img} alt="image" />
                 </td>
@@ -228,6 +248,18 @@ const List = (props) => {
             ))}
           </tbody>
         </table>
+        <Backdrop
+          sx={{
+            color: "var(--color-dark)",
+            zIndex: "90",
+          }}
+          open={openBackdrop}
+          onClick={handleClose}
+        >
+          <div className="buy-backdrop" ref={backdropRef}>
+            {selectedProperty && <PropertyDetail building={selectedProperty} />}
+          </div>
+        </Backdrop>
       </div>
     </div>
   );

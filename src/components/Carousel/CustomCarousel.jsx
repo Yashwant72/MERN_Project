@@ -20,7 +20,6 @@ const CustomCarousel = (props) => {
 
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
-
   const backdropRef = useRef(null);
 
   const handleClose = (event) => {

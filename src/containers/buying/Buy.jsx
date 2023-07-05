@@ -15,8 +15,8 @@ const Buy = () => {
   const [searchText, setSearchText] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showList, setShowList] = useState(false);
-  const [showMap, setShowMap] = useState(false);
-  const [showGallery, setShowGallery] = useState(true);
+  const [showMap, setShowMap] = useState(true);
+  const [showGallery, setShowGallery] = useState(false);
   const [openBackdrop, setOpenBackdrop] = useState(true);
   const handleClose = () => {
     setOpenBackdrop(false);
@@ -108,6 +108,7 @@ const Buy = () => {
             data={buildingData}
             map={false}
             onClick={handleOpen}
+            
           />
         )}
         {/* {showGallery && <PropertyDetail />} */}
