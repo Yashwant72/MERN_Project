@@ -1,24 +1,81 @@
-LANDING PAGE
--> Data
-	- Auth Token
--> Routes
-	- Login/Sign up
+API USER ROUTER (Completed)
 
-HEADER
--> Routes
-	- About ?
-	- Buy
-	- Sell
-	- Help
+1. POST /api/user/signup
+body -
+	fullName, email, password, phone, birthDate
+res -
+	User
+	JWT token
 
-SELL PAGE
--> Location
--> Area
--> Image Carousel
--> Type
--> Rooms
--> Facilities
--> Description
--> Price
+2. POST /api/user/signin
+body -
+	email
+	password
+res -
+	JWT token
 
-API USER ROUTER
+3. POST /api/user/signout
+header -
+	Authorization: Bearer <token>
+
+4. GET /api/user/me
+header -
+	Authorization: Bearer <token>
+res - 
+	User
+
+5. PATCH /api/user/me
+header -
+	Authorization: Bearer <token>
+body -
+	fullName / email / password / phone
+res - 
+	User
+
+6. DELETE /api/user/me
+header -
+	Authorization: Bearer <token>
+
+7. POST /api/user/avatar
+header -
+	Authorization: Bearer <token>
+form-data -
+	avatar
+res (image/jpeg) -
+	avatar
+
+8. GET /api/user/avatar
+header -
+	Authorization: Bearer <token>
+res (image/jpeg) -
+	avatar
+
+9. POST /api/user/bookmarks
+header -
+	Authorization: Bearer <token>
+body:
+	property (id)
+
+10. POST /api/user/recents
+header -
+	Authorization: Bearer <token>
+body:
+	property (id)
+
+11. DELETE /api/user/bookmarks
+header -
+	Authorization: Bearer <token>
+body:
+	property (id)
+
+12. GET /api/user/bookmarks
+header -
+	Authorization: Bearer <token>
+res -
+	Property (list)
+
+13. GET /api/user/recents
+header -
+	Authorization: Bearer <token>
+body:
+	Property (list)

@@ -96,7 +96,7 @@ userRouter.patch("/me", auth, async (req, res) => {
 
 userRouter.delete("/me", auth, async (req, res) => {
 	try {
-		await User.findByIdAndDelete(req.userId);
+		await User.deleteOne({ _id: req.userId });
 		res.send({ message: "Profile deleted successfully" });
 	} catch ({ message }) {
 		res.status(500).send({ message });
@@ -138,26 +138,6 @@ userRouter.get("/avatar", auth, async (req, res) => {
 	}
 })
 
-userRouter.get("/seller/:id", auth, async (req, res) => {
-	try {
-		const user = await User.findById(req.params.id);
-		if (user.tokens.includes(req.token)) {
-			return res.status(400).send({ message: "Self profile" });
-		}
-
-		res.format({
-			'application/json': () => {
-				res.send(user);
-			},
-			'image/jpeg': () => {
-				res.send(user.avatar);
-			}
-		})
-	} catch ({ message }) {
-		res.status(500).send({ message });
-	}
-})
-
 userRouter.post("/bookmarks", auth, async (req, res) => {
 	try {
 		const { property } = req.body;
@@ -177,13 +157,8 @@ userRouter.post("/bookmarks", auth, async (req, res) => {
 userRouter.post("/recents", auth, async (req, res) => {
 	try {
 		const { property } = req.body;
-		if (req.user.recents.includes(property)) {
-			return res.status(400).send({ message: "Already in recents" })
-		}
-
-		req.user.recents = req.user.recents.concat(property);
-
-		await req.user.save();
+		await req.user.updateRecents(property);
+		
 		res.send({ message: "Recents updated successfully" })
 	} catch ({ message }) {
 		res.status(500).send({ message });

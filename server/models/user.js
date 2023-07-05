@@ -1,36 +1,62 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const fs = require('fs');
+const path = require('path');
+const validator = require("validator");
 const Property = require("./property");
 
 const secretKey = process.env.JWT_SECRET_KEY;
+
+const getDefaultAvatar = () => {
+  const imagePath = path.join(__dirname, "../../public/assets", "userPlaceholder.png");
+  const imageBuffer = fs.readFileSync(imagePath);
+	
+  return imageBuffer;
+}
 
 const userSchema = new mongoose.Schema({
 	fullName: {
 		type: String,
 		required: true,
-		trim: true
+		trim: true,
 	},
 	avatar: {
-		type: Buffer
+		type: Buffer,
+		default: getDefaultAvatar
 	}, 
 	email: {
 		type: String,
 		required: true,
 		unique: true,
 		trim: true,
-		lowercase: true
+		lowercase: true,
+		validate: (value) => {
+			if (!validator.isEmail(value)) {
+				throw new Error("Valid email must be provided");
+			}
+		}
 	},
 	password: {
 		type: String,
 		required: true,
 		trim: true,
-		minLength: 7
+		minLength: 7,
+		validate: (value) => {
+			if (!validator.isStrongPassword(value)) {
+				throw new Error("Password should be more complex");
+			}
+		}
 	},
 	phone: {
-		type: Number,
+		type: String,
 		required: true,
-		trim: true
+		trim: true,
+		validate: (value) => {
+			if (!validator.isMobilePhone(value)) {
+				throw new Error("Valid phone number must be provided");
+			}
+		}
 	},
 	birthDate: {
 		type: Date,
@@ -65,6 +91,20 @@ userSchema.methods.generateAuthToken = async function () {
 	await user.save();
 
 	return token;
+}
+
+userSchema.methods.updateRecents = async function (property) {
+	const user = this;
+	const index = user.recents.indexOf(property);
+	
+	if (index != -1) {
+		user.recents.splice(index, 1);
+	} else if (user.recents.length >= 50) {
+		user.recents.shift();
+	}
+
+	user.recents = user.recents.concat(property);
+	await user.save();
 }
 
 userSchema.methods.toJSON = function () {
@@ -105,6 +145,15 @@ userSchema.pre("save", async function (next) {
 	if (user.isModified("password")) {
 		user.password = await bcrypt.hash(user.password, 8);
 	}
+
+	next();
+})
+
+userSchema.pre("deleteOne", async function (next) {
+	const userId = this.getFilter()._id;
+	const deleted = await Property.deleteMany({ currentOwner: userId });
+
+	console.log(deleted);
 
 	next();
 })

@@ -26,12 +26,12 @@ const propertySchema = new mongoose.Schema({
         type: String,
         required: true,
 				lowercase: true,
-        enum: ['residential', 'commercial', 'industrial', 'land', 'corporate']
+        enum: ['residential', 'commercial', 'industrial', 'land']
     },
     beds: {
         type: Number,
         required: true,
-        min: 1
+        min: 0
     },
     facilities: {
         type: String,
