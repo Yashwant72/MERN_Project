@@ -56,14 +56,17 @@ input[type="text"]:focus {
 }
 
 .buy-options {
-  width: 40%;
+  /* width: 20%; */
+  min-width: 250px;
+  max-width: 300px;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  max-width: 450px;
+  /* max-width: 450px; */
   /* background-color: green; */
+  gap: 20px;
 }
 
 .buy-options-container {
@@ -72,17 +75,17 @@ input[type="text"]:focus {
   width: 100%;
   align-items: center;
   justify-content: center;
-  /* background-color: green; */
+  /* background-color: red; */
 }
 
 button {
   height: 40px;
   width: 100px;
-  border-radius: 0;
+  border-radius: 5px;
   background-color: var(--color-light);
   border: 0.5px solid var(--color-dark-subtle);
 }
-button:first-child {
+/* button:first-child {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
@@ -90,7 +93,7 @@ button:first-child {
 button:last-child {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-}
+} */
 
 .buy-filters {
   display: flex;
@@ -106,8 +109,22 @@ button:last-child {
   margin-right: 2.5px;
 }
 
+/* .button-active,
+button:hover {
+  color: var(--color-contrast);
+  border-color: var(--color-contrast);
+} */
+
 .button-active,
 button:hover {
   color: var(--color-contrast);
   border-color: var(--color-contrast);
 }
+
+/* @media screen and (max-width: 1200px) {
+  .buy-input {
+    width: 40%;
+  }
+} */
+
+/* TODO create a drawer for menu view .buy-options */

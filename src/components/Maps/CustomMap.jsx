@@ -168,9 +168,10 @@ const CustomMap = ({ selectedMarker, popupStyle, tooltipDirection }) => {
 
   return (
     <MapContainer
+      className="map-container"
       center={[coordinates.latitude, coordinates.longitude]}
       zoom={8}
-      style={{ width: "100%", height: "800px" }}
+      // style={{ width: "100%", height: "800px" }}
       {...mapOptions}
       whenCreated={(mapInstance) => {
         mapRef.current = mapInstance;

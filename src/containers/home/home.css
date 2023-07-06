@@ -101,7 +101,7 @@
 .home-section2-cards {
   width: 50%;
   /* background-color: red; */
-  height: 800px;
+  max-height: 800px;
   overflow-y: auto;
   /* scrollbar-width: 5px; */
   scrollbar-width: thin;
@@ -132,5 +132,41 @@
 .home-section2-map {
   width: 40%;
   /* background-color: blue; */
-  min-height: 750px;
+  max-height: 750px;
+}
+
+@media screen and (max-width: 1280px) {
+  .home-section2-cards {
+    /* Styles for smaller screens */
+    max-height: 600px;
+    width: 30%;
+  }
+  .home-section2-map {
+    max-height: 600px;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .home-section1 {
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+  }
+  .home-section2 {
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: space-around; */
+
+    padding: 5px;
+    gap: 10px;
+  }
+  .home-section2-cards {
+    max-height: 350px;
+    width: 90%;
+    height: 100%;
+  }
+  .home-section2-map {
+    width: 75%;
+  }
 }

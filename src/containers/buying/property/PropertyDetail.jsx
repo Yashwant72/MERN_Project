@@ -28,7 +28,7 @@ const PropertyDetail = ({ building }) => {
                   value={building.rating}
                   precision={0.5}
                   readOnly
-                  size="large"
+                  size="medium"
                   className="custom-rating"
                 />
               </div>
@@ -46,7 +46,6 @@ const PropertyDetail = ({ building }) => {
               tenetur id soluta! Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Nobis minus excepturi, illo, quis, natus hic
               eligendi officia ab molestiae fugit eveniet velit pariatur
-             
             </div>
             <div className="property-content-bottom">
               <div className="property-content-details-images">
