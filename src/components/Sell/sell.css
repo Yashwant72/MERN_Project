@@ -1,0 +1,71 @@
+.sell-container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 48px 48px;
+    justify-content: center;
+    width: 100%;
+    font-family: var(--font-family);
+}
+.sell{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 25px;
+    color: var(--color-dark);
+}
+.sell-form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 60%;
+    position: relative;
+}
+.form-details{
+    margin-top: 15px;
+    display: flex !important;
+    flex-direction: row !important;
+}
+.sell-address{
+    display: flex !important;
+    flex-direction: column !important;
+}
+.sell-details{
+    position: absolute;
+    left:50%;
+    display: flex !important;
+    flex-direction: column !important;
+}
+.sell-image{
+    margin: 0;
+    background-image: url('../../assets/images/pexels-pixabay-271795.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+    width: 40%;
+}
+input,textarea{
+    width: 250px;
+    margin: 10px 0px;
+    border-radius: 10px !important;
+    border: solid 2px black;
+}
+textarea{
+    background-color: var(--color-light);
+    text-align: center;
+    padding: auto 0px;
+}
+.form-submit{
+    position: absolute;
+    border-radius:15px !important;
+    color: var(--color-light);
+    background-color: var(--color-dark);
+    left: 35.5rem;
+    top: 485px;
+    max-height: 37px;
+}
+.submit-icon{
+    margin-left:11px ;
+}
