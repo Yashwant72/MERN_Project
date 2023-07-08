@@ -25,7 +25,7 @@ const Nav = (props) => {
   return (
     <nav className="navbar navbar-expand-lg header w-100 navbar-container" >
       <div className="container-fluid w-100">
-        <a className="navbar-brand brand ms-5" href="#">UrbanNest</a>
+        <a className="navbar-brand brand ms-5" href="/">UrbanNest</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -34,8 +34,8 @@ const Nav = (props) => {
           <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div className="navbar-nav" >
               <a className="nav-link me-4" aria-current="page" href="#about">About</a>
-              <a className="nav-link mx-4" aria-current="page" href="#buy">Buy</a>
-              <a className="nav-link mx-4" aria-current="page" href="#sell">Sell</a>
+              <a className="nav-link mx-4" aria-current="page" href="buy">Buy</a>
+              <a className="nav-link mx-4" aria-current="page" href="sell">Sell</a>
               <a className="nav-link mx-4" aria-current="page" href="#contact">Contact</a>
             </div>
           </div>
