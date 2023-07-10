@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
 
-const propertySchema = new mongoose.Schema({
+
+const PropertySchema = new mongoose.Schema({
     currentOwner: {
-        type: mongoose.SchemaTypes.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "User",
         required: true
     },
@@ -10,9 +11,19 @@ const propertySchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    location: {
+    address: {
         type: String,
         required: true,
+    },
+    bedrooms: {
+        type: Number,
+        required: true,
+        min: 1
+    },
+    bathrooms: {
+        type: Number,
+        required: true,
+        min: 1
     },
     area: {
         type: Number,
@@ -20,18 +31,12 @@ const propertySchema = new mongoose.Schema({
     },
     images: {
         type: String,
-				required: true
+        required: true,
     },
     type: {
         type: String,
         required: true,
-				lowercase: true,
-        enum: ['residential', 'commercial', 'industrial', 'land']
-    },
-    beds: {
-        type: Number,
-        required: true,
-        min: 0
+        enum: ['Residential', 'Commercial', 'Industrial', 'Land']
     },
     facilities: {
         type: String,
@@ -42,10 +47,5 @@ const propertySchema = new mongoose.Schema({
         required: true,
         min: 20
     }
-}, {
-	timestamps: true
-})
-
-const Property = mongoose.model("Property", propertySchema);
-
-module.exports = Property;
+}, {timestamps: true})
+module.exports = mongoose.model("Property", PropertySchema)
