@@ -1,13 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./routers/userRouter");
-
+const propertyController = require("./routers/propertyController")
 const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.json());
 
 app.use("/api/user", userRouter);
+app.use("/api/property", propertyController);
+
 
 const startServer = async () => {
 	// console.log(process.env.MONGODB_URI);

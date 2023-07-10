@@ -10,19 +10,10 @@ import buildingData from "../../assets/dummyData/buildingData";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import filter from "../../assets/icons/filter.png";
 import PropertyDetail from "./property/PropertyDetail";
-import {
-  Backdrop,
-  Button,
-  ClickAwayListener,
-  Grow,
-  Menu,
-  MenuItem,
-  MenuList,
-  Paper,
-  Popper,
-} from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 import { TokenContext } from "../../context/TokenContext";
 import { SignInContext } from "../../context/SignInContext";
+import axios from "axios";
 
 const Buy = () => {
   const { token } = useContext(TokenContext);
@@ -30,16 +21,11 @@ const Buy = () => {
 
   // console.log("🚀 ~ file: Buy.jsx:31 ~ Buy ~ user:", user);
 
-  useEffect(() => {
-    console.log("🚀 ~ file: Buy.jsx:29 ~ Buy ~ token:", token);
-  }, [token]);
+  // useEffect(() => {
+  //   console.log("🚀 ~ file: Buy.jsx:29 ~ Buy ~ token:", token);
+  // }, [token]);
 
   // const config;
-
-  
-
-
-
 
   const [searchText, setSearchText] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -68,6 +54,29 @@ const Buy = () => {
       clearTimeout(timer);
     };
   }, [searchText, isFormSubmitted]);
+
+  // ** Fetching data
+  const [Data, setData] = useState([]);
+
+  console.log("🚀 ~ file: Buy.jsx:61 ~ Buy ~ buildingData:", Data);
+
+  const fetchData = () => {
+    axios
+      .get("/api/property/getAll")
+      .then((response) => {
+        const fetchedData = response.data;
+        setData(fetchedData);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
+  
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
@@ -126,6 +135,7 @@ const Buy = () => {
     <div className="buy-container">
       <div className="buy">
         <div className="buy-input">
+          {/* <button onClick={fetchData}>Fetch</button> */}
           <input
             type="text"
             value={searchText}
@@ -232,28 +242,6 @@ const Buy = () => {
               Gallery
             </MenuItem>
           </Menu>
-
-          {/* <div className="buy-option-view">
-            <button
-              className={showList ? "button-active" : ""}
-              onClick={() => handleButtonClick("list")}
-            >
-              List
-            </button>
-            <button
-              className={showMap ? "button-active" : ""}
-              onClick={() => handleButtonClick("map")}
-            >
-              Map
-            </button>
-            <button
-              className={showGallery ? "button-active" : ""}
-              onClick={() => handleButtonClick("gallery")}
-            >
-              Gallery
-            </button>
-          </div> */}
-
           <div className="buy-filters">
             <button>
               <img src={filter} alt="filter" />
@@ -268,25 +256,12 @@ const Buy = () => {
         {showGallery && (
           <Gallery
             keyword={searchText}
-            data={buildingData}
+            data={Data}
             map={false}
             onClick={handleOpen}
           />
         )}
-        {/* {showGallery && <PropertyDetail />} */}
       </div>
-      {/* <Backdrop
-        sx={{
-          color: "var(--color-subtle)",
-          zIndex: "90",
-        }}
-        open={openBackdrop}
-        onClick={handleClose}
-      >
-        <div className="buy-backdrop">
-          <PropertyDetail />
-        </div>
-      </Backdrop> */}
     </div>
   );
 };

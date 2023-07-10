@@ -9,6 +9,12 @@ import { Rating } from "@mui/material";
 // TODO add links for property images
 
 const PropertyDetail = ({ building }) => {
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString("en-US");
+    return formattedDate;
+  };
+
   return (
     <div className="property-container">
       <div className="property">
@@ -36,16 +42,15 @@ const PropertyDetail = ({ building }) => {
             <div className="property-content-details-body">
               <div className="property-content-details-address">
                 <img src={location} alt="" />
-                {building.address}
+                {/* {building.address} */}
+                {building.location}
               </div>
             </div>
             <div className="property-content-details-description">
+              {building.description}
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque
               modi tempore reiciendis commodi non dolores corrupti in vitae quam
-              cum. Odio nihil commodi asperiores omnis reiciendis adipisci
-              tenetur id soluta! Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Nobis minus excepturi, illo, quis, natus hic
-              eligendi officia ab molestiae fugit eveniet velit pariatur
+              cum.
             </div>
             <div className="property-content-bottom">
               <div className="property-content-details-images">
@@ -71,12 +76,17 @@ const PropertyDetail = ({ building }) => {
                   Brief Information
                 </div>
                 <div className="property-content-card-owner">
-                  Owner: {building.authorName}
+                  <span style={{ fontWeight: "bold" }}>Owner:</span>
+                  {building.currentOwner}
+                </div>
+                <div className="property-content-card-facilites">
+                  <span style={{ fontWeight: "bold" }}>Facilites:</span> <br />
+                  {building.facilities}
                 </div>
                 <div className="property-content-card-icons">
                   <div className="property-content-card-bed">
                     <img src={bed} alt="bed" />
-                    {building.bed}
+                    {building.beds}
                   </div>
 
                   <div className="property-content-card-tub">
@@ -102,7 +112,8 @@ const PropertyDetail = ({ building }) => {
                       Date:
                     </div>
                     <div className="property-content-card-date-data">
-                      {building.listingDate}
+                      {/* {building.updatedAt} */}
+                      {formatDate(building.updatedAt)}
                     </div>
                   </div>
                 </div>

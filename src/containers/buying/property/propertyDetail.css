@@ -191,12 +191,20 @@
   font-weight: normal;
 }
 
+.property-content-card-facilites {
+  font-family: var(--font-family);
+  color: var(--color-dark);
+
+  font-size: 20px;
+  font-weight: normal;
+}
+
 .property-content-card-owner {
   font-family: var(--font-family);
   color: var(--color-dark);
 
   font-size: 20px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .property-content-card-icons,
