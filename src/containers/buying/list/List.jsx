@@ -6,8 +6,9 @@ import area from "../../../assets/icons/area.png";
 import "./List.css";
 // import arrowUp from "../../../assets/icons/arrowUp.png";
 import arrowDown from "../../../assets/icons/arrowDown.png";
-import { Backdrop } from "@mui/material";
+import { Backdrop, Skeleton } from "@mui/material";
 import PropertyDetail from "../property/PropertyDetail";
+import { faFilterCircleDollar } from "@fortawesome/free-solid-svg-icons";
 
 const List = (props) => {
   const [openBackdrop, setOpenBackdrop] = useState(false);
@@ -75,9 +76,14 @@ const List = (props) => {
     }
   };
 
-  const filteredBuildingData = buildingData.filter((item) =>
-    item.address.toLowerCase().includes(props.keyword.toLowerCase())
-  );
+  // const filteredBuildingData = buildingData.filter((item) =>
+  //   item.address.toLowerCase().includes(props.keyword.toLowerCase())
+  // );
+  const filteredBuildingData = props.data
+    ? props.data.filter((item) =>
+        item.location.toLowerCase().includes(props.keyword.toLowerCase())
+      )
+    : [];
 
   const sortedBuildingData = sortBuildingData();
   return (
@@ -213,39 +219,119 @@ const List = (props) => {
             </tr>
           </thead>
           <tbody>
-            {filteredBuildingData.map((item, index) => (
-              <tr
-                className="listRow"
-                key={index}
-                onClick={() => handleOpen(item)}
-              >
-                <td className="listRow-image">
-                  <img src={item.img} alt="image" />
-                </td>
-                <td className="listRow-price">{item.price}</td>
-                <td className="listRow-address">{item.address}</td>
-                <td className="listRow-icons">
-                  <div className="listRow-bed">
-                    <div className="listRow-bed-icon">
-                      <img src={bed} alt="bed icon" />
-                    </div>
-                    <div className="listRow-bed-num">{item.bed}</div>
-                  </div>
-                  <div className="listRow-tub">
-                    <div className="listRow-tub-icon">
-                      <img src={tub} alt="tub icon" />
-                    </div>
-                    <div className="listRow-tub-num">{item.tub}</div>
-                  </div>
-                  <div className="listRow-area">
-                    <div className="listRow-area-icon">
-                      <img src={area} alt="area icon" />
-                    </div>
-                    <div className="listRow-area-num">{item.area}</div>
-                  </div>
-                </td>
-              </tr>
-            ))}
+            {filteredBuildingData.length === 0
+              ? Array.from({ length: 15 }).map((_, index) => (
+                  <tr className="listRow" key={index}>
+                    <td className="listRow-image">
+                      <Skeleton
+                        variant="rectangular"
+                        width={80}
+                        height={80}
+                        className="skeleton-image"
+                      />
+                    </td>
+                    <td className="listRow-price">
+                      <Skeleton
+                        width={80}
+                        height={24}
+                        className="skeleton-price"
+                      />
+                    </td>
+                    <td className="listRow-address">
+                      <Skeleton
+                        width={100}
+                        height={24}
+                        className="skeleton-address"
+                      />
+                    </td>
+                    <td className="listRow-icons">
+                      <div className="listRow-bed">
+                        <div className="listRow-bed-icon">
+                          <Skeleton
+                            variant="circular"
+                            width={24}
+                            height={24}
+                            className="skeleton-icon"
+                          />
+                        </div>
+                        <div className="listRow-bed-num">
+                          <Skeleton
+                            width={30}
+                            height={24}
+                            className="skeleton-num"
+                          />
+                        </div>
+                      </div>
+                      <div className="listRow-tub">
+                        <div className="listRow-tub-icon">
+                          <Skeleton
+                            variant="circular"
+                            width={24}
+                            height={24}
+                            className="skeleton-icon"
+                          />
+                        </div>
+                        <div className="listRow-tub-num">
+                          <Skeleton
+                            width={30}
+                            height={24}
+                            className="skeleton-num"
+                          />
+                        </div>
+                      </div>
+                      <div className="listRow-area">
+                        <div className="listRow-area-icon">
+                          <Skeleton
+                            variant="circular"
+                            width={24}
+                            height={24}
+                            className="skeleton-icon"
+                          />
+                        </div>
+                        <div className="listRow-area-num">
+                          <Skeleton
+                            width={30}
+                            height={24}
+                            className="skeleton-num"
+                          />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              : filteredBuildingData.map((item, index) => (
+                  <tr
+                    className="listRow"
+                    key={index}
+                    onClick={() => handleOpen(item)}
+                  >
+                    <td className="listRow-image">
+                      <img src={item.img} alt="image" />
+                    </td>
+                    <td className="listRow-price">{item.price}</td>
+                    <td className="listRow-address">{item.location}</td>
+                    <td className="listRow-icons">
+                      <div className="listRow-bed">
+                        <div className="listRow-bed-icon">
+                          <img src={bed} alt="bed icon" />
+                        </div>
+                        <div className="listRow-bed-num">{item.beds}</div>
+                      </div>
+                      <div className="listRow-tub">
+                        <div className="listRow-tub-icon">
+                          <img src={tub} alt="tub icon" />
+                        </div>
+                        <div className="listRow-tub-num">{item.tub}</div>
+                      </div>
+                      <div className="listRow-area">
+                        <div className="listRow-area-icon">
+                          <img src={area} alt="area icon" />
+                        </div>
+                        <div className="listRow-area-num">{item.area}</div>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
         <Backdrop

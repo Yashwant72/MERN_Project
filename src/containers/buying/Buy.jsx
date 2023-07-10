@@ -75,8 +75,6 @@ const Buy = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  
-  
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
@@ -251,7 +249,7 @@ const Buy = () => {
         </div>
       </div>
       <div className="buy-options-container">
-        {showList && <List keyword={searchText} />}
+        {showList && <List keyword={searchText} data={Data} />}
         {showMap && <Map />}
         {showGallery && (
           <Gallery

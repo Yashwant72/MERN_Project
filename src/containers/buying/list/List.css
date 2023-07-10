@@ -187,3 +187,7 @@
 .sort-icon.unrotated {
   transform: rotate(180deg);
 }
+
+td {
+  margin: 0px 20px;
+}
