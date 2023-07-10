@@ -59,12 +59,27 @@ const Nav = (props) => {
         {isLoggedIn && (
           <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div className="navbar-nav" >
-              <a className="nav-link me-4" aria-current="page" href="#about">About</a>
+              {/* <a className="nav-link me-4" aria-current="page" href="#about">About</a> */}
               {/* <a className="nav-link mx-4" aria-current="page" href="buy">Buy</a> */}
-              <Link to="/buy" className="nav-link mx-4" aria-current="page" >Buy</Link>
+              <Link to="/about" className="nav-link mx-4" aria-current="page" >
+                About
+              </Link>
+
+              <Link to="/buy" className="nav-link mx-4" aria-current="page" >
+                Buy
+              </Link>
+
+              <Link to="/sell" className="nav-link mx-4" aria-current="page" >
+                Sell
+              </Link>
+
+              <Link to="/contact" className="nav-link mx-4" aria-current="page" >
+                Contact
+              </Link>
+
               {/* <Link to="/about" /> */}
-              <a className="nav-link mx-4" aria-current="page" href="sell">Sell</a>
-              <a className="nav-link mx-4" aria-current="page" href="#contact">Contact</a>
+              {/* <a className="nav-link mx-4" aria-current="page" href="sell">Sell</a> */}
+              {/* <a className="nav-link mx-4" aria-current="page" href="#contact">Contact</a> */}
             </div>
           </div>
         )}
