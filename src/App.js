@@ -8,6 +8,7 @@ import Landing from './components/LandingPage/Landing';
 import Dashboard from './components/Dashboard/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './containers/home/Home';
+import Sell from './components/Sell/Sell';
 
 function App() {
   const [authState, setAuthState] = useState(false);
@@ -29,7 +30,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />
             <Route path="/home" element={<Home />} />
-
+            <Route path="/sell" element={<Sell />} />
             <Route path="/buy" element={<Buy />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
