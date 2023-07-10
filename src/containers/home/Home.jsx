@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -8,10 +8,13 @@ import data from "../../assets/dummyData/data";
 import CustomMap from "../../components/Maps/CustomMap";
 import Gallery from "../buying/gallery/Gallery";
 import axios from "axios";
+import { TokenContext } from "../../context/TokenContext";
 
 // TODO handle search text
 
 const Home = () => {
+  const { token, setToken } = useContext(TokenContext);
+
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [address, setAddress] = useState("Enter an address");
@@ -103,10 +106,19 @@ const Home = () => {
 
         <div className="home-section2">
           <div className="home-section2-cards">
-            <Gallery keyword={""} onClick={handleMarkerClick} data={data} map={true}/>
+            <Gallery
+              keyword={""}
+              onClick={handleMarkerClick}
+              data={data}
+              map={true}
+            />
           </div>
           <div className="home-section2-map">
-            <CustomMap selectedMarker={selectedMarker} popupStyle={true} tooltipDirection={"top"} />
+            <CustomMap
+              selectedMarker={selectedMarker}
+              popupStyle={true}
+              tooltipDirection={"top"}
+            />
           </div>
         </div>
       </div>

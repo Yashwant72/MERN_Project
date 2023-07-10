@@ -111,9 +111,9 @@ userSchema.methods.toJSON = function () {
 	const user = this;
 	const userObject = user.toObject();
 
-	if (userObject.avatar) {
-		delete userObject.avatar;
-	}
+	// if (userObject.avatar) {
+	// 	delete userObject.avatar;
+	// }
 	
 	delete userObject.__v;
 	delete userObject.tokens;

@@ -5,7 +5,7 @@ const User = require("../models/user");
 
 const userRouter = new express.Router();
 
-const allowedFomats = [ "jpg", "jpeg", "png" ];
+const allowedFomats = ["jpg", "jpeg", "png"];
 const upload = multer({
 	storage: multer.memoryStorage(),
 	limits: {
@@ -30,7 +30,7 @@ userRouter.post("/signup", async (req, res) => {
 		}
 
 		const newUser = await new User(req.body).save();
-		
+
 		const token = await newUser.generateAuthToken();
 		res.send({ user: newUser, token })
 	} catch ({ message }) {
@@ -45,7 +45,8 @@ userRouter.post("/signin", async (req, res) => {
 		const currentUser = await User.findByCredentials(email, password);
 
 		const token = await currentUser.generateAuthToken();
-		res.send({ token })
+
+		res.send({ user: currentUser, token })
 	} catch ({ message }) {
 		res.status(500).send({ message });
 	}
@@ -76,8 +77,8 @@ userRouter.patch("/me", auth, async (req, res) => {
 	try {
 		const updates = req.body;
 		const updatedFields = Object.keys(updates);
-		const allowed = [ "fullName", "email", "password", "phone" ];
-		
+		const allowed = ["fullName", "email", "password", "phone"];
+
 		const valid = updatedFields.every((update) => allowed.includes(update));
 		if (!valid) {
 			return res.status(400).send({ message: "Invalid updates given" });
@@ -108,7 +109,7 @@ userRouter.post("/avatar", auth, upload.single("avatar"), async (req, res) => {
 		if (!req.file) {
 			return res.status(400).send({ message: "No file uploaded" });
 		}
-		
+
 		const avatarBuffer = req.file.buffer;
 		req.user.avatar = avatarBuffer;
 
@@ -158,7 +159,7 @@ userRouter.post("/recents", auth, async (req, res) => {
 	try {
 		const { property } = req.body;
 		await req.user.updateRecents(property);
-		
+
 		res.send({ message: "Recents updated successfully" })
 	} catch ({ message }) {
 		res.status(500).send({ message });

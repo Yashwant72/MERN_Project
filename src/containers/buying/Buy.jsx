@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./buy.css";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -21,8 +21,26 @@ import {
   Paper,
   Popper,
 } from "@mui/material";
+import { TokenContext } from "../../context/TokenContext";
+import { SignInContext } from "../../context/SignInContext";
 
 const Buy = () => {
+  const { token } = useContext(TokenContext);
+  const { user } = useContext(SignInContext);
+
+  // console.log("🚀 ~ file: Buy.jsx:31 ~ Buy ~ user:", user);
+
+  useEffect(() => {
+    console.log("🚀 ~ file: Buy.jsx:29 ~ Buy ~ token:", token);
+  }, [token]);
+
+  // const config;
+
+  
+
+
+
+
   const [searchText, setSearchText] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showList, setShowList] = useState(true);

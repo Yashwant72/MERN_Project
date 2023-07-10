@@ -1,9 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './nav.css';
 import user from '../../assets/images/user.png'
 import dropDown from '../../assets/icons/dropDown.png'
+import { SignInContext } from '../../context/SignInContext';
+import { imagefrombuffer } from "imagefrombuffer"; //first import 
+import { Outlet, Link } from "react-router-dom";
 const Nav = (props) => {
-  const isLoggedIn = props.auth;
+
+  const { user } = useContext(SignInContext);
+  const [imageUrl, setImageUrl] = useState(user);
+
+  // console.log("🚀 ~ file: Nav.js:10 ~ Nav ~ user:", user);
+  useEffect(() => {
+    setIsLoggedIn(user !== null);
+    if (user) {
+      console.log("Nav updated");
+      const base64String = btoa(String.fromCharCode(...new Uint8Array(user.avatar)));
+      const imageNewUrl = `data:image/jpeg;base64,${base64String}`;
+      setImageUrl(imageNewUrl);
+    }
+  }, [user]);
+
+  // const base64Image = Buffer.from(user.avatar).toString('base64');
+
+  // Create the data URL for the image
+  // const imageUrl = `data:image/jpeg;base64,${base64Image}`;
+
+
+
+  // const isLoggedIn = props.auth;
+  const [isLoggedIn, setIsLoggedIn] = useState(user !== null);
   // console.log(isLoggedIn)
 
 
@@ -34,7 +60,9 @@ const Nav = (props) => {
           <div className="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
             <div className="navbar-nav" >
               <a className="nav-link me-4" aria-current="page" href="#about">About</a>
-              <a className="nav-link mx-4" aria-current="page" href="buy">Buy</a>
+              {/* <a className="nav-link mx-4" aria-current="page" href="buy">Buy</a> */}
+              <Link to="/buy" className="nav-link mx-4" aria-current="page" >Buy</Link>
+              {/* <Link to="/about" /> */}
               <a className="nav-link mx-4" aria-current="page" href="sell">Sell</a>
               <a className="nav-link mx-4" aria-current="page" href="#contact">Contact</a>
             </div>
@@ -45,10 +73,11 @@ const Nav = (props) => {
         {isLoggedIn ? (
           <div className='user'>
             <div className='username'>
-              John doe
+              {/* John doe */}
+              {user.fullName}
             </div>
             <div className='user-image'>
-              <img src={user} alt='image' />
+              <img src={imageUrl} alt='image' />
             </div>
             <div className='user-menu'>
               <button className={`icon-button ${isMenuOpen ? 'rotate-icon' : ''}`} onClick={handleMenuToggle}>
