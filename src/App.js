@@ -10,7 +10,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './containers/home/Home';
 import Sell from './components/Sell/Sell';
 import { Backdrop } from '@mui/material';
-import SignIn from './components/signin/SignIn'
+import SignIn from './components/signin/SignIn';
+import SignUp from './components/signup/SignUp';
 import { SignInProvider } from './context/SignInContext';
 import { TokenProvider } from './context/TokenContext';
 function App() {
@@ -49,6 +50,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/buy" element={<Buy />} />
+                <Route path="/sup" element={<SignUp />} />
                 <Route path="/dashboard" element={<Dashboard />} />
               </Routes>
             </div>

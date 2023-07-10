@@ -46,7 +46,7 @@
     border-radius: 8px;
     width: 40%;
 }
-input,textarea{
+input,textarea, label{
     width: 250px;
     margin: 10px 0px;
     border-radius: 10px !important;
@@ -68,4 +68,15 @@ textarea{
 }
 .submit-icon{
     margin-left:11px ;
+}
+.image{
+    display: none;
+}
+::file-selector-button {
+    display: none;
+}
+label{
+    background-color: var(--color-light);
+    color: grey;
+    text-align: center;
 }

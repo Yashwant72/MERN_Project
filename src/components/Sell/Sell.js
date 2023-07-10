@@ -12,25 +12,23 @@ const Sell = () => {
           
           <div>
             <form action='' method='get' className='form-details'>
-            <div className='sell-address'>
+
+            <div className=' sell-address'>
               <h3>Step 1</h3>
-              <h5>Enter Address</h5>
-              <input className='hno' type='text' placeholder='House Number'></input>
-              <input className='locality' type='text' placeholder='Locality'></input>
-              <input className='city' type='text' placeholder='City'></input>
-              <input className='country' type='text' placeholder='Country'></input>
-              <input className='state' type='text' placeholder='State'></input>
-              <input className='zcode' type='number' placeholder='Zip Code'></input>
+              <h5>Enter Details</h5>
+              <input className='type' type='number' placeholder='Price'></input>
+              <input className='area' type='text' placeholder='Area'></input>
+              <label for="files">Select file</label>
+              <input className='image' id='files' type='file' placeholder='Property Image'></input>
+              <input className='type' type='text' placeholder='Property Type'></input>
+              <input className='bed-count' type='number' placeholder='Bedroom Count'></input>
+              <textarea className='desc' placeholder='Description'></textarea>
             </div>
 
             <div className='sell-details'>
               <h3>Step 2</h3>
-              <h5>Enter Details</h5>
-              <input className='type' type='text' placeholder='Property Type'></input>
-              <input className='bed-count' type='number' placeholder='Bedroom Count'></input>
-              <input className='bath-count' type='number' placeholder='Bathroom Count'></input>
-              <input className='area' type='text' placeholder='Area'></input>
-              <textarea className='desc' placeholder='Description'></textarea>
+              <h5>Enter Address</h5>
+              <input className='address' type='text' placeholder='Complete Address'></input>
             </div>
 
             <button type='submit' className='form-submit'>
