@@ -61,8 +61,8 @@ const Nav = (props) => {
             <div className="navbar-nav" >
               {/* <a className="nav-link me-4" aria-current="page" href="#about">About</a> */}
               {/* <a className="nav-link mx-4" aria-current="page" href="buy">Buy</a> */}
-              <Link to="/about" className="nav-link mx-4" aria-current="page" >
-                About
+              <Link to="/home" className="nav-link mx-4" aria-current="page" >
+                Home
               </Link>
 
               <Link to="/buy" className="nav-link mx-4" aria-current="page" >

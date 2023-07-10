@@ -14,6 +14,7 @@ const Sell = () => {
     image: '',
     propertyType: '',
     bedroomCount: '',
+    bathroomCount:'',
     facility : '',
     description: ''
   });
@@ -32,16 +33,20 @@ const Sell = () => {
   
     try {
       const propertyDataJSON = {
+        currentOwner: token,
         price: propertyData.price,
-        location: propertyData.completeAddress,
+        address: propertyData.completeAddress,
+        bedrooms: propertyData.bedroomCount,
+        bathrooms: propertyData.bathroomCount,
         area: propertyData.area,
         images: 'demo image',
         type: propertyData.propertyType,
-        beds: propertyData.bedroomCount,
-        facilities: propertyData.propertyFacility,
+        facilities: propertyData.facility,
         description: propertyData.description,
       };
-  
+      console.log(token);
+      console.log("my data")
+      console.log(propertyDataJSON);
       const response = await axios.post('/api/property', propertyDataJSON, {
         headers: {
           'Content-Type': 'application/json',
@@ -106,6 +111,14 @@ const Sell = () => {
                   name='bedroomCount'
                   placeholder='Bedroom Count'
                   value={propertyData.bedroomCount}
+                  onChange={handleChange}
+                />
+                <input
+                  className='bath-count'
+                  type='number'
+                  name='bathroomCount'
+                  placeholder='Bathroom Count'
+                  value={propertyData.bathroomCount}
                   onChange={handleChange}
                 />
                 <input

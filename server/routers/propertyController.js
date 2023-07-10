@@ -1,6 +1,6 @@
 const Property = require('../models/property')
 const propertyController = require('express').Router()
-const verifyToken = require('../middleware/verifyToken')
+const verifyToken = require('../middleware/auth')
 
 propertyController.get('/getAll', async (req, res) => {
     try {
