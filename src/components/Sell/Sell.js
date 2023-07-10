@@ -1,8 +1,61 @@
 import React from 'react'
+import axios from 'axios';
+import { useContext, useState } from 'react';
+import { TokenContext } from '../../context/TokenContext';
 import './sell.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGreaterThan } from '@fortawesome/free-solid-svg-icons';
 const Sell = () => {
+  const { token } = useContext(TokenContext);
+  const [propertyData, setPropertyData] = useState({
+    price: '',
+    completeAddress: '',
+    area: '',
+    image: '',
+    propertyType: '',
+    bedroomCount: '',
+    facility : '',
+    description: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    setPropertyData((prevData) => ({
+      ...prevData,
+      [name]: files ? files[0] : value
+    }));
+  };
+    console.log(propertyData)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const propertyDataJSON = {
+        price: propertyData.price,
+        location: propertyData.completeAddress,
+        area: propertyData.area,
+        images: 'demo image',
+        type: propertyData.propertyType,
+        beds: propertyData.bedroomCount,
+        facilities: propertyData.propertyFacility,
+        description: propertyData.description,
+      };
+  
+      const response = await axios.post('/api/property', propertyDataJSON, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      // Handle the response from the API if needed
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  
   return (
     <section className='sell-container'>
       <div className='sell'>
@@ -11,29 +64,85 @@ const Sell = () => {
           <h1>Sell Property</h1>
           
           <div>
-            <form action='' method='get' className='form-details'>
+          <form onSubmit={handleSubmit} className='form-details'>
+              <div className='sell-address'>
+                <h3>Step 1</h3>
+                <h5>Enter Details</h5>
+                <input
+                  className='type'
+                  type='number'
+                  name='price'
+                  placeholder='Price'
+                  value={propertyData.price}
+                  onChange={handleChange}
+                />
+                <input
+                  className='area'
+                  type='text'
+                  name='area'
+                  placeholder='Area'
+                  value={propertyData.area}
+                  onChange={handleChange}
+                />
+                <label htmlFor='files'>Select file</label>
+                <input
+                  className='image'
+                  id='files'
+                  type='file'
+                  name='image'
+                  onChange={handleChange}
+                />
+                <input
+                  className='type'
+                  type='text'
+                  name='propertyType'
+                  placeholder='Property Type'
+                  value={propertyData.propertyType}
+                  onChange={handleChange}
+                />
+                <input
+                  className='bed-count'
+                  type='number'
+                  name='bedroomCount'
+                  placeholder='Bedroom Count'
+                  value={propertyData.bedroomCount}
+                  onChange={handleChange}
+                />
+                <input
+                  className='type'
+                  type='text'
+                  name='facility'
+                  placeholder='Facility'
+                  value={propertyData.facility}
+                  onChange={handleChange}
+                />
+                <textarea
+                  className='desc'
+                  name='description'
+                  placeholder='Description'
+                  value={propertyData.description}
+                  onChange={handleChange}
+                ></textarea>
+              </div>
 
-            <div className=' sell-address'>
-              <h3>Step 1</h3>
-              <h5>Enter Details</h5>
-              <input className='type' type='number' placeholder='Price'></input>
-              <input className='area' type='text' placeholder='Area'></input>
-              <label for="files">Select file</label>
-              <input className='image' id='files' type='file' placeholder='Property Image'></input>
-              <input className='type' type='text' placeholder='Property Type'></input>
-              <input className='bed-count' type='number' placeholder='Bedroom Count'></input>
-              <textarea className='desc' placeholder='Description'></textarea>
-            </div>
+              <div className='sell-details'>
+                <h3>Step 2</h3>
+                <h5>Enter Address</h5>
+                <input
+                  className='address'
+                  type='text'
+                  name='completeAddress'
+                  placeholder='Complete Address'
+                  value={propertyData.completeAddress}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <div className='sell-details'>
-              <h3>Step 2</h3>
-              <h5>Enter Address</h5>
-              <input className='address' type='text' placeholder='Complete Address'></input>
-            </div>
-
-            <button type='submit' className='form-submit'>
-              Next
-              <span className='submit-icon'><FontAwesomeIcon icon={faGreaterThan} /></span>
+              <button type='submit' className='form-submit'>
+                Next
+                <span className='submit-icon'>
+                  <FontAwesomeIcon icon={faGreaterThan} />
+                </span>
               </button>
             </form>
           </div>

@@ -7,9 +7,9 @@ const verifyToken = (req, res, next) => {
     }
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer ")) {
         const token = req.headers.authorization.split(" ")[1]
-        jwt.verify(token, process.env.JWT_SECRET, (err, data) => {
+        jwt.verify(token, process.env.JWT_SECRET_KEY, (err, data) => {
             if (err) {
-                return res.status(403).json({ msg: "Token Expired" })
+                return res.status(403).json({ msg: err })
             }
             else {
                 console.log(data)

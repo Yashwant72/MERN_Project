@@ -14,7 +14,8 @@ const SignUp = () => {
     const { name, value } = e.target;
     if (name === 'image') {
       setImage(e.target.files[0]);
-    } else if (name === 'fullname') {
+    } 
+    else if (name === 'fullname') {
       setFullname(value);
     } else if (name === 'password') {
       setPassword(value);
@@ -38,22 +39,19 @@ const SignUp = () => {
     }
 
     try {
-      const formData = new FormData();
-      formData.append('fullname', fullname);
-      formData.append('password', password);
-      formData.append('email', email);
-      formData.append('dob', dob);
-      formData.append('phone', phone);
-      formData.append('image', image);
-
-      const response = await axios.post('/api/user/signup', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+      const response = await axios.post('/api/user/signup', {
+        image,
+        fullname,
+        email,
+        password,
+        phone,
+        dob
       });
 
-      console.log(response.data); // Handle the response from the backend as needed
+      // Handle successful signup response here, e.g., show success message
+      console.log(response.data);
     } catch (error) {
+      // Handle error response here, e.g., show error message
       console.error(error);
     }
   };
