@@ -43,11 +43,7 @@ function App() {
         <SignInProvider>
           <BrowserRouter >
             <Nav auth={authState} handleSignIn={handleSignIn} handleSignOut={handleSignOut} />
-
-
-
             <div style={{ marginTop: '80px', width: '100%' }}>
-
               <Routes>
                 <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />
                 <Route path="/home" element={<Home />} />
@@ -57,12 +53,15 @@ function App() {
               </Routes>
             </div>
             {showBackdrop && (
-              <Backdrop open={showBackdrop}
-
-                onClick={handleClose}>
-
-
-                <SignIn />
+              <Backdrop
+                style={{
+                  zIndex: 1000,
+                  transition: 'opacity 0.2s',
+                }}
+                open={showBackdrop}
+              // onClick={handleClose}
+              >
+                <SignIn onClick={handleClose} />
               </Backdrop>
             )}
           </BrowserRouter>
