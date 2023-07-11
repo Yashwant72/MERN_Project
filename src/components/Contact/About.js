@@ -6,7 +6,7 @@ const About = () => {
   return (
     <section className='about-container'>
       <div className='about'>
-        <h1>About The Team</h1>
+        <h1 className='about-heading'>About The Team</h1>
 
         <div className='about-cards'>
           <div class="card" >
@@ -49,7 +49,7 @@ const About = () => {
         </div>
 
         <div className='about-footer'>
-          <h1>About Website</h1>
+          <h1 className='about-heading'>About Website</h1>
           <div className='card'>
             <div className='card-body'>
               <p class="card-text footer-text">Platform for users to list and browse properties. Real estate platform is a digital space where realtors, 
