@@ -71,17 +71,6 @@ textarea {
 .submit-icon {
   margin-left: 11px;
 }
-.image {
-  display: none;
-}
-::file-selector-button {
-  display: none;
-}
-label {
-  background-color: var(--color-light);
-  color: grey;
-  text-align: center;
-}
 
 .sell-btns {
   display: flex;

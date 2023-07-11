@@ -39,7 +39,7 @@ const Sell = () => {
         bedrooms: propertyData.bedroomCount,
         bathrooms: propertyData.bathroomCount,
         area: propertyData.area,
-        images: 'demo image',
+        images: propertyData.image,
         type: propertyData.propertyType,
         facilities: propertyData.facility,
         description: propertyData.description,
@@ -89,12 +89,13 @@ const Sell = () => {
                   value={propertyData.area}
                   onChange={handleChange}
                 />
-                <label htmlFor='files'>Select file</label>
                 <input
                   className='image'
                   id='files'
                   type='text'
                   name='image'
+                  placeholder='Select file'
+                  value={propertyData.image}
                   onChange={handleChange}
                 />
                 <input
