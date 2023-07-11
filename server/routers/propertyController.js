@@ -15,6 +15,10 @@ propertyController.get('/getAll', async (req, res) => {
 propertyController.post('/', verifyToken, async (req, res) => {
     try {
         const newProperty = await Property.create({ ...req.body, currentOwner: req.userId })
+        const user = await User.findById(req.userId);
+        user.selling = user.selling.concat(newProperty._id);
+
+        await user.save();
 
         return res.status(200).json(newProperty)
     }
