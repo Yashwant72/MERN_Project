@@ -158,7 +158,7 @@ const PropertyDetail = ({
       setTimeout(() => {
         handleClose();
         propertyUpdated();
-      }, 3000);
+      }, 2000);
     } catch (error) {
       console.error("Error updating property:", error);
 
@@ -174,14 +174,25 @@ const PropertyDetail = ({
   };
 
   const handleAddBookmark = async () => {
-    const config = { headers: { Authorization: `Bearer ${token}` } };
+    try {
+      const config = { headers: { Authorization: `Bearer ${token}` } };
 
-    const { data } = await axios.post(
-      `/api/user/bookmarks/${building._id}`,
-      null,
-      config
-    );
-    console.log(data.message);
+      const { data } = await axios.post(
+        `/api/user/bookmarks/${building._id}`,
+        null,
+        config
+      );
+      console.log(data.message);
+      setSnackbarMessage("Bookmark added successfully");
+      setSnackbarSeverity("success");
+      setOpenSnackbar(true);
+      setTimeout(() => {}, 2000);
+    } catch (error) {
+      console.error("Error updating bookmarks:", error);
+      setSnackbarMessage("Already Bookmarked");
+      setSnackbarSeverity("error");
+      setOpenSnackbar(true);
+    }
   };
 
   return (
