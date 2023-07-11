@@ -42,16 +42,16 @@ function App() {
         <SignInProvider>
           <BrowserRouter >
 
-            <Nav auth={authState} 
-            handleSignIn={handleSignIn} 
-            handleSignOut={handleSignOut} />
+            <Nav auth={authState}
+              handleSignIn={handleSignIn}
+              handleSignOut={handleSignOut} />
             <div style={{ marginTop: '80px', width: '100%' }}>
               <Routes>
                 <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/buy" element={<Buy />} />
-                <Route path="/sup" element={<SignUp />} />
+                <Route path="/signup" element={<SignUp />} />
                 <Route path="/dashboard" element={<Dashboard />} />
               </Routes>
             </div>
