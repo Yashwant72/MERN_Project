@@ -149,7 +149,7 @@ const Nav = (props) => {
                       onClick={() => { setIsMenuOpen(!isMenuOpen); }}
                       style={{
                         textDecoration: 'none',
-                        color:'var(--color-dark)'
+                        color: 'var(--color-dark)'
                       }}
                     >
                       Dashbard
@@ -162,7 +162,11 @@ const Nav = (props) => {
           </div>
         ) : (
           <div>
-            <button className='btn border-3 bg-primary btn-sm px-3 ms-5 text-white'>Sign Up</button>
+            <button
+              className='btn border-3 bg-primary btn-sm px-3 ms-5 text-white' onClick={props.handleSignOut}
+            >
+              Sign Up
+            </button>
             <button
               onClick={props.handleSignIn}
               className='border-primary btn border-3 bg-light btn-sm px-3 mx-5 text-primary'>Sign In</button>

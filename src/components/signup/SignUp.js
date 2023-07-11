@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [fullname, setFullname] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
@@ -100,6 +100,9 @@ const SignUp = () => {
       </label>
       <br />
 
+      <button onClick={props.onClick}>
+        Cancel
+      </button>
       <button type="submit">Sign Up</button>
     </form>
   );

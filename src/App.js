@@ -16,20 +16,21 @@ import SignUp from './components/signup/SignUp';
 import { SignInProvider } from './context/SignInContext';
 import { TokenProvider } from './context/TokenContext';
 function App() {
-  const [authState, setAuthState] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
-
+  const [showSignUpBackdrop, setshowSignUpBackdrop] = useState(false)
   const handleSignIn = () => {
     setShowBackdrop(true);
   };
 
   const handleSignOut = () => {
-    setAuthState(!authState);
+    setshowSignUpBackdrop(true);
   };
+
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setShowBackdrop(false);
+    setshowSignUpBackdrop(false);
   };
   const handleOpen = () => {
     setOpen(true);
@@ -43,12 +44,12 @@ function App() {
         <SignInProvider>
           <BrowserRouter >
 
-            <Nav auth={authState}
+            <Nav
               handleSignIn={handleSignIn}
               handleSignOut={handleSignOut} />
             <div style={{ marginTop: '80px', width: '100%' }}>
               <Routes>
-                <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />
+                <Route path="/" element={<Landing handleSignIn={handleSignIn} handleSignOut={handleSignOut} />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/buy" element={<Buy />} />
@@ -69,6 +70,20 @@ function App() {
                 <SignIn onClick={handleClose} />
               </Backdrop>
             )}
+            {showSignUpBackdrop && (
+              <Backdrop
+                style={{
+                  zIndex: 1000,
+                  transition: 'opacity 0.2s',
+                }}
+                open={showSignUpBackdrop}
+              // onClick={handleClose}
+              >
+                {/* <SignIn onClick={handleClose} /> */}
+                <SignUp onClick={handleClose} />
+              </Backdrop>
+            )}
+
           </BrowserRouter>
         </SignInProvider>
       </TokenProvider>
