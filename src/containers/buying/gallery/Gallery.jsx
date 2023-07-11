@@ -100,6 +100,8 @@ const Gallery = (props) => {
                 setOpenBackdrop(false);
               }}
               propertyDeleted={props.wasDeleted}
+              propertyUpdated={props.wasUpdated}
+
             />
           ) : (
             // Display skeleton if selectedProperty is null

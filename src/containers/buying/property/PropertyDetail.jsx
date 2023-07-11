@@ -152,16 +152,23 @@ const PropertyDetail = ({
         }
       );
       console.log(response.data);
-      setSnackbarSeverity("success");
       setSnackbarMessage("Updated successfully");
+      setSnackbarSeverity("success");
       setOpenSnackbar(true);
       setTimeout(() => {
         handleClose();
-      }, 2000);
+        propertyUpdated();
+      }, 3000);
     } catch (error) {
       console.error("Error updating property:", error);
+
+      // console.log(
+      //   "🚀 ~ file: PropertyDetail.jsx:165 ~ handleSubmit ~ error.response.data:",
+      //   error.response.data
+      // );
+
+      setSnackbarMessage(error.response.data);
       setSnackbarSeverity("error");
-      setSnackbarMessage("Error in updating");
       setOpenSnackbar(true);
     }
   };
@@ -352,23 +359,6 @@ const PropertyDetail = ({
           </div>
         </div>
       </div>
-      <Snackbar
-        open={openSnackbar}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        TransitionComponent={Slide}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          severity={snackbarSeverity}
-          sx={{
-            width: "100%",
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-          }}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
 
       <Dialog
         onClose={handleClose}
@@ -397,6 +387,7 @@ const PropertyDetail = ({
         <DialogContent
           sx={{
             padding: "20px 40px",
+            zIndex: "100 !important",
           }}
         >
           <div>
@@ -503,10 +494,51 @@ const PropertyDetail = ({
 
               <div className="sell-image"></div>
             </div>
-            {/* <button onClick={handleClose}>Cancel</button> */}
+            <Snackbar
+              open={openSnackbar}
+              autoHideDuration={3000}
+              onClose={handleSnackbarClose}
+              TransitionComponent={Slide}
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+              sx={{
+                position: "fixed",
+                zIndex: "9999 !important", // Set the desired z-index value
+              }}
+            >
+              <Alert
+                severity={snackbarSeverity}
+                sx={{
+                  width: "100%",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+                }}
+              >
+                {snackbarMessage}
+              </Alert>
+            </Snackbar>
           </div>
         </DialogContent>
       </Dialog>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        TransitionComponent={Slide}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        sx={{
+          position: "fixed",
+          zIndex: "9999 !important", // Set the desired z-index value
+        }}
+      >
+        <Alert
+          severity={snackbarSeverity}
+          sx={{
+            width: "100%",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+          }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
