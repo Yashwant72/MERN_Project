@@ -9,7 +9,7 @@ import CustomMap from "../../../components/Maps/CustomMap";
 import { Backdrop } from "@mui/material";
 import PropertyDetail from "../property/PropertyDetail";
 
-const Map = () => {
+const Map = ({ data }) => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [address, setAddress] = useState("Enter an address");
@@ -46,6 +46,45 @@ const Map = () => {
     geocodeAddress();
   }, [address]);
 
+  //** Fetch coords for db */
+  const [propertyData, setPropertyData] = useState([]);
+
+  console.log("🚀 ~ file: Home.jsx:87 ~ Home ~ propertyData:", propertyData);
+
+  useEffect(() => {
+    const fetchCoordinates = async () => {
+      try {
+        const apiKey = "pk.d8dedc86f19bc2a82a11faa671cb3ebc"; // Replace with your LocationIQ API key
+        const results = [];
+
+        for (let i = 0; i < data.length; i++) {
+          const item = data[i];
+
+          console.log(
+            "🚀 ~ file: Home.jsx:99 ~ fetchCoordinates ~ item:",
+            item
+          );
+
+          const encodedAddress = encodeURIComponent(item.address);
+          const apiUrl = `https://eu1.locationiq.com/v1/search.php?key=${apiKey}&q=${encodedAddress}&format=json`;
+
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Constant delay of 1 second
+
+          const response = await axios.get(apiUrl);
+          const { lat, lon } = response.data[0];
+          results.push({ ...item, lat, lon });
+        }
+
+        setPropertyData(results);
+        console.log(results); // Print the updated property data with coordinates
+      } catch (error) {
+        console.error("Error fetching coordinates:", error);
+      }
+    };
+
+    fetchCoordinates();
+  }, [data]);
+
   // const handleAddressChange = (e) => {
   //   setAddress(e.target.value);
   // };
@@ -72,6 +111,7 @@ const Map = () => {
             <CustomMap
               selectedMarker={selectedMarker}
               tooltipDirection={"left"}
+              data={propertyData}
             />
           </div>
         </div>
@@ -81,16 +121,16 @@ const Map = () => {
               {data.map((item, index) => (
                 <SideList
                   key={index}
-                  img={item.img}
+                  img={item.images}
                   price={item.price}
                   address={item.address}
-                  bed={item.bed}
-                  tub={item.tub}
+                  bed={item.bedrooms}
+                  tub={item.bathrooms}
                   area={item.area}
                   state={item.state}
-                  listingStatus={item.listingStatus}
-                  listingDate={item.listingDate}
-                  propertyType={item.propertyType}
+                  // listingStatus={item.listingStatus}
+                  listingDate={item.updatedAt}
+                  propertyType={item.type}
                   onClick={() => handleMarkerClick(item.address, item)}
                   openProperty={() => handleOpen(item)}
                 />

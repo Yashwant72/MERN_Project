@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, data } from "react";
 import "./customMap.css";
 import axios from "axios";
 import buildingData from "../../assets/dummyData/buildingData";
@@ -14,10 +14,10 @@ import {
 import { icon as leafletIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerIcon from "../../assets/icons/marker.png";
-import data from "../../assets/dummyData/data";
+// import data from "../../assets/dummyData/data";
 import CustomPopup from "./CustomPopup";
 
-const CustomMap = ({ selectedMarker, popupStyle, tooltipDirection }) => {
+const CustomMap = ({ selectedMarker, popupStyle, tooltipDirection, data }) => {
   const mapRef = useRef();
   const [coordinates, setCoordinates] = useState({
     latitude: 20.5937,

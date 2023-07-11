@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import buildingData from "../../../assets/dummyData/buildingData";
+// import buildingData from "../../../assets/dummyData/buildingData";
 import bed from "../../../assets/icons/bed.png";
 import tub from "../../../assets/icons/tub.png";
 import area from "../../../assets/icons/area.png";
@@ -11,6 +11,8 @@ import PropertyDetail from "../property/PropertyDetail";
 import { faFilterCircleDollar } from "@fortawesome/free-solid-svg-icons";
 
 const List = (props) => {
+  // console.log("🚀 ~ file: List.jsx:15 ~ List ~ props:", props.data[0].images);
+
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const backdropRef = useRef(null);
@@ -27,7 +29,7 @@ const List = (props) => {
   };
   const [sortColumn, setSortColumn] = useState("price");
 
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("desc");
 
   const handleSort = (column) => {
     if (sortColumn === column) {
@@ -40,7 +42,7 @@ const List = (props) => {
 
   const sortBuildingData = () => {
     if (sortColumn === "price") {
-      return buildingData.sort((a, b) => {
+      return props.data.sort((a, b) => {
         if (sortOrder === "asc") {
           return a.price - b.price;
         } else {
@@ -48,23 +50,23 @@ const List = (props) => {
         }
       });
     } else if (sortColumn === "bed") {
-      return buildingData.sort((a, b) => {
+      return props.data.sort((a, b) => {
         if (sortOrder === "asc") {
-          return a.bed - b.bed;
+          return a.bedrooms - b.bedrooms;
         } else {
-          return b.bed - a.bed;
+          return b.bedrooms - a.bedrooms;
         }
       });
     } else if (sortColumn === "tub") {
-      return buildingData.sort((a, b) => {
+      return props.data.sort((a, b) => {
         if (sortOrder === "asc") {
-          return a.tub - b.tub;
+          return a.bathrooms - b.bathrooms;
         } else {
-          return b.tub - a.tub;
+          return b.bathrooms - a.bathrooms;
         }
       });
     } else if (sortColumn === "area") {
-      return buildingData.sort((a, b) => {
+      return props.data.sort((a, b) => {
         if (sortOrder === "asc") {
           return a.area - b.area;
         } else {
@@ -72,7 +74,7 @@ const List = (props) => {
         }
       });
     } else {
-      return buildingData;
+      return props.data;
     }
   };
 
@@ -81,7 +83,7 @@ const List = (props) => {
   // );
   const filteredBuildingData = props.data
     ? props.data.filter((item) =>
-        item.location.toLowerCase().includes(props.keyword.toLowerCase())
+        item.address.toLowerCase().includes(props.keyword.toLowerCase())
       )
     : [];
 
@@ -112,7 +114,7 @@ const List = (props) => {
                           src={arrowDown}
                           alt="Sort Arrow"
                           className={`sort-icon ${
-                            sortOrder === "asc" ? "rotated" : ""
+                            sortOrder === "asc" ? "" : "rotated"
                           }`}
                           style={{
                             height: "22px",
@@ -144,7 +146,8 @@ const List = (props) => {
                             src={arrowDown}
                             alt="Sort Arrow"
                             className={`sort-icon ${
-                              sortOrder === "asc" ? "rotated" : ""
+                              sortOrder === "asc" ? "" : "rotated"
+
                             }`}
                             style={{
                               height: "22px",
@@ -173,7 +176,8 @@ const List = (props) => {
                             src={arrowDown}
                             alt="Sort Arrow"
                             className={`sort-icon ${
-                              sortOrder === "asc" ? "rotated" : ""
+                              sortOrder === "asc" ? "" : "rotated"
+
                             }`}
                             style={{
                               height: "22px",
@@ -202,7 +206,8 @@ const List = (props) => {
                             src={arrowDown}
                             alt="Sort Arrow"
                             className={`sort-icon ${
-                              sortOrder === "asc" ? "rotated" : ""
+                              sortOrder === "asc" ? "" : "rotated"
+
                             }`}
                             style={{
                               height: "22px",
@@ -306,22 +311,22 @@ const List = (props) => {
                     onClick={() => handleOpen(item)}
                   >
                     <td className="listRow-image">
-                      <img src={item.img} alt="image" />
+                      <img src={item.images} alt="image" />
                     </td>
                     <td className="listRow-price">{item.price}</td>
-                    <td className="listRow-address">{item.location}</td>
+                    <td className="listRow-address">{item.address}</td>
                     <td className="listRow-icons">
                       <div className="listRow-bed">
                         <div className="listRow-bed-icon">
                           <img src={bed} alt="bed icon" />
                         </div>
-                        <div className="listRow-bed-num">{item.beds}</div>
+                        <div className="listRow-bed-num">{item.bedrooms}</div>
                       </div>
                       <div className="listRow-tub">
                         <div className="listRow-tub-icon">
                           <img src={tub} alt="tub icon" />
                         </div>
-                        <div className="listRow-tub-num">{item.tub}</div>
+                        <div className="listRow-tub-num">{item.bathrooms}</div>
                       </div>
                       <div className="listRow-area">
                         <div className="listRow-area-icon">

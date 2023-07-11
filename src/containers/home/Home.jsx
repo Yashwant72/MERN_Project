@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import image from "../../assets/images/landingBgAlt.png";
 // import image from "../../assets/images/landingImg.jpg";
+// import data from "../../assets/dummyData/data";
 import data from "../../assets/dummyData/data";
 import CustomMap from "../../components/Maps/CustomMap";
 import Gallery from "../buying/gallery/Gallery";
@@ -13,12 +14,47 @@ import { TokenContext } from "../../context/TokenContext";
 // TODO handle search text
 
 const Home = () => {
+  
   const { token, setToken } = useContext(TokenContext);
+
+  // ** Fetching data
+  const [Data, setData] = useState([]);
+
+  console.log("🚀 ~ file: Home.jsx:23 ~ Home ~ imported data:", data);
+
+
+  console.log("🚀 ~ file: Buy.jsx:61 ~ Buy ~ buildingData:", Data);
+
+  const fetchData = () => {
+    axios
+      .get("/api/property/getAll")
+      .then((response) => {
+        const fetchedData = response.data;
+        setData(fetchedData);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [address, setAddress] = useState("Enter an address");
-  const [selectedMarker, setSelectedMarker] = useState(null);
+
+  console.log("🚀 ~ file: Home.jsx:44 ~ Home ~ address:", address);
+
+  const [selectedMarker, setSelectedMarker] = useState(
+    " Gateway of India, Mumbai, Maharashtra, India"
+  );
+
+  console.log(
+    "🚀 ~ file: Home.jsx:48 ~ Home ~ selectedMarker:",
+    selectedMarker
+  );
 
   const handleMarkerClick = (marker) => {
     setAddress(marker);
@@ -49,6 +85,42 @@ const Home = () => {
 
     geocodeAddress();
   }, [address]);
+
+  const [propertyData, setPropertyData] = useState([]);
+
+  // console.log("🚀 ~ file: Home.jsx:87 ~ Home ~ propertyData:", propertyData);
+
+
+  useEffect(() => {
+    const fetchCoordinates = async () => {
+      try {
+        const apiKey = "pk.d8dedc86f19bc2a82a11faa671cb3ebc"; // Replace with your LocationIQ API key
+        const results = [];
+
+        for (let i = 0; i < Data.length; i++) {
+          const item = Data[i];
+
+          // console.log("🚀 ~ file: Home.jsx:99 ~ fetchCoordinates ~ item:", item);
+
+          const encodedAddress = encodeURIComponent(item.address);
+          const apiUrl = `https://eu1.locationiq.com/v1/search.php?key=${apiKey}&q=${encodedAddress}&format=json`;
+
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Constant delay of 1 second
+
+          const response = await axios.get(apiUrl);
+          const { lat, lon } = response.data[0];
+          results.push({ ...item, lat, lon });
+        }
+
+        setPropertyData(results);
+        console.log(results); // Print the updated property data with coordinates
+      } catch (error) {
+        console.error("Error fetching coordinates:", error);
+      }
+    };
+
+    fetchCoordinates();
+  }, [Data]);
 
   return (
     <div className="home-container">
@@ -109,7 +181,7 @@ const Home = () => {
             <Gallery
               keyword={""}
               onClick={handleMarkerClick}
-              data={data}
+              data={Data}
               map={true}
             />
           </div>
@@ -118,6 +190,7 @@ const Home = () => {
               selectedMarker={selectedMarker}
               popupStyle={true}
               tooltipDirection={"top"}
+              data={propertyData}
             />
           </div>
         </div>

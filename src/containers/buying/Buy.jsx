@@ -81,6 +81,9 @@ const Buy = () => {
     setIsFormSubmitted(false);
   };
 
+  
+
+
   const handleSubmit = () => {
     if (searchText) {
       setIsFormSubmitted(true);
@@ -250,7 +253,7 @@ const Buy = () => {
       </div>
       <div className="buy-options-container">
         {showList && <List keyword={searchText} data={Data} />}
-        {showMap && <Map />}
+        {showMap && <Map data={Data}/>}
         {showGallery && (
           <Gallery
             keyword={searchText}

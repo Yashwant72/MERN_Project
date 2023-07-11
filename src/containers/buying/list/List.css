@@ -14,6 +14,7 @@
   width: 100%;
   background-color: var(--color-light);
   align-items: center;
+  /* gap: 20px; */
 }
 
 .list-col-site {
@@ -58,10 +59,12 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  min-width: 900px;
   background-color: var(--color-light);
   align-items: center;
   margin: 10px 0px;
   padding: 10px 0px;
+  gap: 20px;
   /* justify-content: space-around; */
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
   transition: all 0.2s ease;
@@ -126,6 +129,8 @@
   color: var(--color-dark);
   font-size: 16px;
   font-family: var(--font-family);
+  /* min-width: 250px; */
+  /* background-color: red; */
 }
 
 .listRow-icons {
@@ -188,6 +193,6 @@
   transform: rotate(180deg);
 }
 
-td {
-  margin: 0px 20px;
-}
+/* td {
+  margin: 0px 10px;
+} */

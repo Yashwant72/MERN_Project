@@ -9,7 +9,7 @@ const CustomPopup = ({ item }) => {
     <div className="popup-container">
       <div className="popup">
         <div className="popup-image">
-          <img src={item.img} />
+          <img src={item.images} />
         </div>
         <div className="popup-content">
           <div className="popup-content-price">{item.price}</div>
@@ -17,12 +17,12 @@ const CustomPopup = ({ item }) => {
           <div className="popup-content-icons">
             <div className="popup-content-bed">
               <img src={bed} alt="bed" />
-              {item.bed}
+              {item.bedrooms}
             </div>
 
             <div className="popup-content-tub">
               <img src={tub} alt="tub" />
-              {item.tub}
+              {item.bedrooms}
             </div>
             <div className="popup-content-area">
               <img src={area} alt="area" />

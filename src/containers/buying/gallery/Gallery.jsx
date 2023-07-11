@@ -30,7 +30,7 @@ const Gallery = (props) => {
   const forMap = props.map;
   const filteredBuildingData = props.data
     ? props.data.filter((item) =>
-        item.location.toLowerCase().includes(props.keyword.toLowerCase())
+        item.address.toLowerCase().includes(props.keyword.toLowerCase())
       )
     : [];
 
@@ -55,11 +55,11 @@ const Gallery = (props) => {
             filteredBuildingData.map((building, index) => (
               <PropertyCard
                 key={index}
-                img={building.img}
+                img={building.images}
                 price={building.price}
-                address={building.location}
-                bed={building.beds}
-                tub={building.tub}
+                address={building.address}
+                bed={building.bedrooms}
+                tub={building.bathrooms}
                 area={building.area}
                 onClick={
                   forMap

@@ -19,7 +19,7 @@ const PropertyDetail = ({ building }) => {
     <div className="property-container">
       <div className="property">
         <div className="property-image">
-          <img src={building.img} alt="img5" />
+          <img src={building.images} alt="img5" />
         </div>
         <div className="property-content">
           <div className="property-content-details">
@@ -42,8 +42,8 @@ const PropertyDetail = ({ building }) => {
             <div className="property-content-details-body">
               <div className="property-content-details-address">
                 <img src={location} alt="" />
-                {/* {building.address} */}
-                {building.location}
+                {building.address}
+                {/* {building.a} */}
               </div>
             </div>
             <div className="property-content-details-description">
@@ -86,12 +86,12 @@ const PropertyDetail = ({ building }) => {
                 <div className="property-content-card-icons">
                   <div className="property-content-card-bed">
                     <img src={bed} alt="bed" />
-                    {building.beds}
+                    {building.bedrooms}
                   </div>
 
                   <div className="property-content-card-tub">
                     <img src={tub} alt="tub" />
-                    {building.tub}
+                    {building.bathrooms}
                   </div>
                   <div className="property-content-card-area">
                     <img src={area} alt="area" />

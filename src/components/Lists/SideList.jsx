@@ -12,7 +12,11 @@ const SideList = (props) => {
   const handleClick = () => {
     props.onClick(props.address); // Pass the address to the parent component's click handler
   };
-
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString("en-US");
+    return formattedDate;
+  };
   return (
     <div className="sideList-container" onClick={handleClick}>
       <div className="sideList">
@@ -60,7 +64,7 @@ const SideList = (props) => {
           </div>
           <div className="sideList-address">
             <div className="sideList-address-street">{props.address}</div>
-            <div className="sideList-address-state">{props.state} </div>
+            {/* <div className="sideList-address-state">{props.state} </div> */}
           </div>
         </div>
         <div className="sideList-col3">
@@ -75,11 +79,16 @@ const SideList = (props) => {
         </div>
         <div className="sideList-col4">
           <div className="sideList-date">
-            <div className="sideList-date-main">{props.listingDate}</div>
+            <div className="sideList-date-main">
+              {formatDate(props.listingDate)}
+            </div>
             <div className="sideList-date-info">Listing Date</div>
           </div>
           <div className="sideList-status">
-            <div className="sideList-status-main">{props.listingStatus}</div>
+            <div className="sideList-status-main">
+              {/* {props.listingStatus} */}
+              Active
+              </div>
             <div className="sideList-status-info">Listing status</div>
           </div>
         </div>
