@@ -54,9 +54,9 @@ const PropertyDetail = ({
     const formattedDate = date.toLocaleDateString("en-US");
     return formattedDate;
   };
-  const handleDeleteProperty = async (id) => {
+  const handleDeleteProperty = async () => {
     try {
-      const response = await axios.delete(`/api/property/${id}`, {
+      const response = await axios.delete(`/api/property/${building._id}`, {
         headers: {
           Authorization: `Bearer ${token}`, // Replace `yourAuthToken` with the actual token
         },
@@ -209,7 +209,7 @@ const PropertyDetail = ({
                         // onClick={() => {
                         //   console.log("Delete");
                         // }}
-                        onClick={() => handleDeleteProperty(building._id)}
+                        onClick={handleDeleteProperty}
                       >
                         <DeleteIcon sx={{ fontSize: 20 }} />
                       </IconButton>
