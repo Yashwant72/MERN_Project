@@ -93,7 +93,7 @@ const Sell = () => {
                 <input
                   className='image'
                   id='files'
-                  type='file'
+                  type='text'
                   name='image'
                   onChange={handleChange}
                 />
