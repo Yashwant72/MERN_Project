@@ -19,7 +19,7 @@ const Nav = (props) => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // console.log("🚀 ~ file: Nav.js:10 ~ Nav ~ user:", user);
+  console.log("🚀 ~ file: Nav.js:10 ~ Nav ~ user:", user);
   useEffect(() => {
     if (user) {
       setIsLoggedIn(true);
@@ -29,6 +29,33 @@ const Nav = (props) => {
       setImageUrl(imageNewUrl);
     }
   }, [user]);
+
+  // const imageSrc = `data:image/png;base64,${Buffer.from(user.avatar).toString("base64")}`;
+
+
+  const [imageSrc, setImageSrc] = useState("");
+
+  useEffect(() => {
+    const convertBufferToImage = () => {
+      if (user && user.avatar) {
+        const arrayBufferView = new Uint8Array(user.avatar.data);
+        const blob = new Blob([arrayBufferView], { type: "image/jpeg" });
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          setImageSrc(fileReader.result);
+        };
+        fileReader.readAsDataURL(blob);
+      }
+    };
+
+    convertBufferToImage();
+  }, [user]);
+
+  // if (!user) {
+  //   return <div>Loading user...</div>; // Or any other loading indicator
+  // }
+
+
 
 
 
@@ -130,7 +157,11 @@ const Nav = (props) => {
               {user.fullName}
             </div>
             <div className='user-image'>
-              <img src={imageUrl} alt='image' />
+              <img
+                src="https://source.unsplash.com/featured?Person&sig=1" alt='avatar'
+                style={{ borderRadius: '50%', width: '60px', height: '60px' }} />
+
+              {/* <img src={imageSrc} alt='image' /> */}
             </div>
             <div className='user-menu'>
               <button className={`icon-button ${isMenuOpen ? 'rotate-icon' : ''}`} onClick={handleMenuToggle}>

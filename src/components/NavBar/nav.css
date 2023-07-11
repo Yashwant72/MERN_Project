@@ -43,6 +43,11 @@ li a {
 .user-menu {
   position: relative;
 }
+.user-image {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+}
 
 .icon-button {
   background: none;
