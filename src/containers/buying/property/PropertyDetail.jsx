@@ -1,4 +1,4 @@
-import { useContext, useEffect }, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./propertyDetail.css";
 import axios from "axios";
 import tub from "../../../assets/icons/tub.png";
@@ -18,9 +18,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { TokenContext } from "../../../context/TokenContext";
 import { Alert, Button, Slide, Snackbar } from "@mui/material";
-import { TokenContext } from "../../../context/TokenContext";
-
-import axios from "axios";
 import { SignInContext } from "../../../context/SignInContext";
 // TODO add links for property images
 
@@ -47,12 +44,10 @@ const PropertyDetail = ({
   //   building._id
   // );
 
-  const { token, setToken } = useContext(TokenContext);
-
   useEffect(() => {
     console.log(token);
-    console.log(building)
-  })
+    console.log(building);
+  });
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -172,11 +167,15 @@ const PropertyDetail = ({
   };
 
   const handleAddBookmark = async () => {
-    const config = { headers: { "Authorization": `Bearer ${token}` } }
+    const config = { headers: { Authorization: `Bearer ${token}` } };
 
-    const { data } = await axios.post(`/api/user/bookmarks/${building._id}`, null, config);
+    const { data } = await axios.post(
+      `/api/user/bookmarks/${building._id}`,
+      null,
+      config
+    );
     console.log(data.message);
-  }
+  };
 
   return (
     <div className="property-container">
@@ -341,7 +340,10 @@ const PropertyDetail = ({
                   <button className="property-content-card-btn">
                     Show contacts
                   </button>
-                  <button className="property-content-card-btn" onClick={handleAddBookmark}>
+                  <button
+                    className="property-content-card-btn"
+                    onClick={handleAddBookmark}
+                  >
                     Add to list
                   </button>
                 </div>

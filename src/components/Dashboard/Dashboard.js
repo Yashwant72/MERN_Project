@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useEffect, useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import buildingData from '../../assets/dummyData//buildingData';
 
 import './dashboard.css';
@@ -13,29 +13,35 @@ import CustomCarousel from '../Carousel/CustomCarousel';
 import axios from 'axios';
 import Gallery from '../../containers/buying/gallery/Gallery';
 import data from '../../assets/dummyData/data';
-import { SignInContext } from '../../context/SignInContext';import { SignInContext } from '../../context/SignInContext';
+import { SignInContext } from '../../context/SignInContext';
 import { TokenContext } from "../../context/TokenContext";
-import axios from 'axios';
+
 
 const Dashboard = () => {
   const { token, setToken } = useContext(TokenContext);
   const { user, setUser } = useContext(SignInContext);
 
-  useEffect(() => {
-    const getUserBookmarks = async () => {
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+  // useEffect(() => {
 
-      const { data } = await axios.get(
-        `/api/user/bookmarks`,
-        config
-      );
-      console.log(data);
-    }
+  //   const getUserBookmarks = async () => {
+  //     try {
+  //       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-    getUserBookmarks();
-  }, [])
+  //       const { data } = await axios.get(
+  //         `/api/user/bookmarks`,
+  //         config
+  //       );
+  //       console.log(data);
 
-  const { user } = useContext(SignInContext);
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+
+  //   getUserBookmarks();
+  // }, [])
+
+
 
   console.log("🚀 ~ file: Dashboard.js:21 ~ Dashboard ~ user:", user);
 
@@ -69,7 +75,7 @@ const Dashboard = () => {
       .get("/api/property/getAll")
       .then((response) => {
         const fetchedData = response.data;
-        const filteredData = fetchedData.filter((item) => item.currentOwner === user._id);
+        const filteredData = fetchedData.filter((item) => item.currentOwner._id === user._id);
         setData(filteredData);
         // setData(fetchedData);
       })

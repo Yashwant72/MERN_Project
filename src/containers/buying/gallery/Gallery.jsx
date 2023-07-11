@@ -68,7 +68,6 @@ const Gallery = (props) => {
                 }
                 propertyDeleted={props.wasDeleted}
                 propertyUpdated={props.wasUpdated}
-
               />
             ))
           )
