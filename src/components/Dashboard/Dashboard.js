@@ -20,26 +20,33 @@ import { TokenContext } from "../../context/TokenContext";
 const Dashboard = () => {
   const { token, setToken } = useContext(TokenContext);
   const { user, setUser } = useContext(SignInContext);
+  const [Bookmarks, setBookmarks] = useState([])
 
-  // useEffect(() => {
+  console.log("🚀 ~ file: Dashboard.js:25 ~ Dashboard ~ Bookmarks:", Bookmarks);
 
-  //   const getUserBookmarks = async () => {
-  //     try {
-  //       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-  //       const { data } = await axios.get(
-  //         `/api/user/bookmarks`,
-  //         config
-  //       );
-  //       console.log(data);
+  useEffect(() => {
 
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
+    const getUserBookmarks = async () => {
+      try {
+        const config = { headers: { Authorization: `Bearer ${token}` } };
 
-  //   getUserBookmarks();
-  // }, [])
+        const { data } = await axios.get(
+          `/api/user/bookmarks`,
+          config
+        );
+        console.log(data);
+        setBookmarks(data)
+
+
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getUserBookmarks();
+  }, [])
 
 
 
@@ -58,7 +65,6 @@ const Dashboard = () => {
   const [Data, setData] = useState([]);
   const [WasDeleted, setWasDeleted] = useState(false);
   const [WasUpdated, setWasUpdated] = useState(false);
-
 
   console.log("🚀 ~ file: Dashboard.js:35 ~ Dashboard ~ WasDeleted:", WasDeleted);
 
@@ -118,6 +124,9 @@ const Dashboard = () => {
 
         <div className='dash-body'>
           <div className='dash-gallery'>
+            <h1>
+              Property To Sell
+            </h1>
             <Gallery
               keyword={""}
               data={Data}
@@ -130,7 +139,23 @@ const Dashboard = () => {
 
             />
           </div>
-          <div className='dash-buttons'>
+          <div className='dash-bookmarks'>
+            <h1>
+              Bookmarks
+            </h1>
+            <Gallery
+              keyword={""}
+              data={Bookmarks}
+              map={false}
+              onClick={handleOpen}
+              delete={true}
+              update={true}
+              wasDeleted={handleWasDeleted}
+              wasUpdated={handleWasUpdated}
+
+            />
+          </div>
+          {/* <div className='dash-buttons'>
             <button className={active == 1 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(1) }}>
               Bookmarked
               <span className='dash-icon'><FontAwesomeIcon icon={faBookmark} /></span></button>
@@ -142,7 +167,7 @@ const Dashboard = () => {
             <button className={active == 3 ? "bookmark-button-click" : "bookmark-button"} onClick={() => { handleClick(3) }}>
               Selling
               <span className='dash-icon'><FontAwesomeIcon icon={faSackDollar} /></span></button>
-          </div>
+          </div> */}
 
           <div className='dash-carousel'>
             <CustomCarousel forMap={false} />

@@ -27,6 +27,14 @@
   width: 100%;
 }
 
+.dash-gallery h1,
+.dash-bookmarks h1 {
+  color: var(--color-dark);
+  font-family: var(--font-family);
+  font-size: 36px;
+  /* background-color: aqua; */
+  margin-left: 20px;
+}
 .dashed-line {
   margin: 0;
   height: 1.5px;
@@ -87,11 +95,9 @@
 }
 
 .dash-carousel {
-
   display: flex;
   flex-direction: row;
   /* background-color: bisque; */
   width: 100%;
   padding: 20px 0px;
-
 }
