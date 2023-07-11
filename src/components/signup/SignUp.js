@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './signup.css'
 import axios from 'axios';
 
 const SignUp = (props) => {
@@ -57,54 +58,130 @@ const SignUp = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Full Name:
-        <input type="text" name="fullname" value={fullname} onChange={handleChange} />
-      </label>
-      <br />
+    <div className='signup-container'>
+      <div className='signup'>
+        <div className='signup-left'>
+          <div className='signup-left-title'>
 
-      <label>
-        Password:
-        <input type="password" name="password" value={password} onChange={handleChange} />
-      </label>
-      <br />
+            Sign Up
 
-      <label>
-        Re-enter Password:
-        <input type="password" name="rePassword" value={rePassword} onChange={handleChange} />
-      </label>
-      <br />
+          </div>
 
-      <label>
-        Email:
-        <input type="email" name="email" value={email} onChange={handleChange} />
-      </label>
-      <br />
+          <div className='signup-left-label'>
+            Enter details
+          </div>
 
-      <label>
-        Date of Birth:
-        <input type="date" name="dob" value={dob} onChange={handleChange} />
-      </label>
-      <br />
+          <div className='signup-left-inputs'>
+            <input
+              type="text"
+              name="fullname"
+              value={fullname}
+              onChange={handleChange}
+              placeholder='Full Name'
+            />
 
-      <label>
-        Phone:
-        <input type="tel" name="phone" value={phone} onChange={handleChange} />
-      </label>
-      <br />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder='Password'
 
-      <label>
-        Image:
-        <input type="file" name="image" accept="image/*" onChange={handleChange} />
-      </label>
-      <br />
 
-      <button onClick={props.onClick}>
-        Cancel
-      </button>
-      <button type="submit">Sign Up</button>
-    </form>
+            />
+
+            <input
+              type="password"
+              name="rePassword"
+              value={rePassword}
+              onChange={handleChange}
+              placeholder='Re-Password'
+
+            />
+
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder='Email'
+
+            />
+
+            <input
+              type="date"
+              name="dob"
+              value={dob}
+              onChange={handleChange}
+              placeholder='Date of Birth'
+
+            />
+            <input 
+            type="tel" 
+            name="phone" 
+            value={phone} 
+            onChange={handleChange}
+             />
+
+          </div>
+
+        </div>
+        <div className='signup-right'>
+
+
+        </div>
+      </div>
+
+    </div>
+
+    // <form onSubmit={handleSubmit}>
+    //   <label>
+    //     Full Name:
+    //     <input type="text" name="fullname" value={fullname} onChange={handleChange} />
+    //   </label>
+    //   <br />
+
+    //   <label>
+    //     Password:
+    //     <input type="password" name="password" value={password} onChange={handleChange} />
+    //   </label>
+    //   <br />
+
+    //   <label>
+    //     Re-enter Password:
+    //     <input type="password" name="rePassword" value={rePassword} onChange={handleChange} />
+    //   </label>
+    //   <br />
+
+    //   <label>
+    //     Email:
+    //     <input type="email" name="email" value={email} onChange={handleChange} />
+    //   </label>
+    //   <br />
+
+    //   <label>
+    //     Date of Birth:
+    //     <input type="date" name="dob" value={dob} onChange={handleChange} />
+    //   </label>
+    //   <br />
+
+    //   <label>
+    //     Phone:
+    //     <input type="tel" name="phone" value={phone} onChange={handleChange} />
+    //   </label>
+    //   <br />
+
+    //   <label>
+    //     Image:
+    //     <input type="file" name="image" accept="image/*" onChange={handleChange} />
+    //   </label>
+    //   <br />
+
+    //   <button onClick={props.onClick}>
+    //     Cancel
+    //   </button>
+    //   <button type="submit">Sign Up</button>
+    // </form>
   );
 };
 
