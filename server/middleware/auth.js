@@ -6,6 +6,7 @@ const secretKey = process.env.JWT_SECRET_KEY;
 const auth = async (req, res, next) => {
 	try {
 		const token = req.header("Authorization").split(" ")[1];
+		console.log(token)
 		const decoded = jwt.verify(token, secretKey);
 
 		const currentUser = await User.findOne({ _id: decoded.userId, email: decoded.email, tokens: token });

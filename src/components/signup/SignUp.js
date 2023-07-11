@@ -14,7 +14,7 @@ const SignUp = () => {
     const { name, value } = e.target;
     if (name === 'image') {
       setImage(e.target.files[0]);
-    } 
+    }
     else if (name === 'fullname') {
       setFullname(value);
     } else if (name === 'password') {
@@ -40,12 +40,12 @@ const SignUp = () => {
 
     try {
       const response = await axios.post('/api/user/signup', {
-        image,
-        fullname,
+        // image,
+        fullName: fullname,
         email,
         password,
         phone,
-        dob
+        birthDate: dob
       });
 
       // Handle successful signup response here, e.g., show success message

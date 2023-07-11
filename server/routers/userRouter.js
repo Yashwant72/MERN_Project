@@ -139,9 +139,9 @@ userRouter.get("/avatar", auth, async (req, res) => {
 	}
 })
 
-userRouter.post("/bookmarks", auth, async (req, res) => {
+userRouter.post("/bookmarks/:id", auth, async (req, res) => {
 	try {
-		const { property } = req.body;
+		const property = req.params.id;
 		if (req.user.bookmarked.includes(property)) {
 			return res.status(400).send({ message: "Already in bookmarks" })
 		}
@@ -155,9 +155,9 @@ userRouter.post("/bookmarks", auth, async (req, res) => {
 	}
 })
 
-userRouter.post("/recents", auth, async (req, res) => {
+userRouter.post("/recents/:id", auth, async (req, res) => {
 	try {
-		const { property } = req.body;
+		const property = req.params.id;
 		await req.user.updateRecents(property);
 
 		res.send({ message: "Recents updated successfully" })
@@ -166,9 +166,9 @@ userRouter.post("/recents", auth, async (req, res) => {
 	}
 })
 
-userRouter.delete("/bookmarks", auth, async (req, res) => {
+userRouter.delete("/bookmarks/:id", auth, async (req, res) => {
 	try {
-		const { property } = req.body;
+		const property = req.params.id;
 		if (!req.user.bookmarked.includes(property)) {
 			return res.status(404).send({ message: "Bookmark not found" });
 		}

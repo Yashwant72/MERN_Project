@@ -4,7 +4,7 @@ const verifyToken = require('../middleware/auth')
 
 propertyController.get('/getAll', async (req, res) => {
     try {
-        const properties = await Property.find({})
+        const properties = await Property.find({}).populate("currentOwner").exec()
         return res.status(200).json(properties)
     }
     catch (error) {
@@ -13,7 +13,7 @@ propertyController.get('/getAll', async (req, res) => {
 })
 propertyController.post('/', verifyToken, async (req, res) => {
     try {
-        const newProperty = await Property.create({ ...req.body, currentOwner: req.user.id })
+        const newProperty = await Property.create({ ...req.body, currentOwner: req.userId })
 
         return res.status(200).json(newProperty)
     }
@@ -25,7 +25,7 @@ propertyController.put('/:id', verifyToken, async (req, res) => {
     try {
         const property = await Property.findById(req.params.id)
         //console.log(req.user.id + " " + property.currentOwner);
-        if (property.currentOwner != req.user.id) {
+        if (property.currentOwner != req.userId) {
             throw new Error('Can not modify')
         }
         else {
@@ -45,7 +45,7 @@ propertyController.put('/:id', verifyToken, async (req, res) => {
 propertyController.delete('/:id', verifyToken, async (req, res) => {
     try {
         const property = await Property.findById(req.params.id)
-        if (property.currentOwner != req.user.id) {
+        if (property.currentOwner != req.userId) {
             throw new Error('Can not delete')
         }
         else {

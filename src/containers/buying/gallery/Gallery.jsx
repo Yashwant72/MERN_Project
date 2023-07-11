@@ -66,6 +66,8 @@ const Gallery = (props) => {
                     ? () => props.onClick(building.address)
                     : () => handleOpen(building)
                 }
+                propertyDeleted={props.wasDeleted}
+                propertyUpdated={props.wasUpdated}
               />
             ))
           )
@@ -90,7 +92,15 @@ const Gallery = (props) => {
       >
         <div className="buy-backdrop" ref={backdropRef}>
           {selectedProperty ? (
-            <PropertyDetail building={selectedProperty} />
+            <PropertyDetail
+              building={selectedProperty}
+              deleteEnable={props.delete}
+              updateEnable={props.update}
+              closeOnDelete={() => {
+                setOpenBackdrop(false);
+              }}
+              propertyDeleted={props.wasDeleted}
+            />
           ) : (
             // Display skeleton if selectedProperty is null
             <Skeleton
