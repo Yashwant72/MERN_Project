@@ -77,8 +77,6 @@ const SignIn = (props) => {
         setOpenSnackbar(true);
 
       });
-
-
   };
 
   return (
@@ -118,10 +116,15 @@ const SignIn = (props) => {
 
           </div>
           <div className='signin-left-button'>
+            <button onClick={props.onClick}>
+              Cancel
+
+            </button>
             <button onClick={handleSignIn}>
               Sign In
               <ArrowForwardIosIcon />
             </button>
+
           </div>
         </div>
         <div className='signin-right'>

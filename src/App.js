@@ -19,7 +19,6 @@ function App() {
   const [showBackdrop, setShowBackdrop] = useState(false);
 
   const handleSignIn = () => {
-    setAuthState(true);
     setShowBackdrop(true);
   };
 
@@ -40,10 +39,12 @@ function App() {
   return (
     <div className="app">
       <TokenProvider>
-
         <SignInProvider>
           <BrowserRouter >
-            <Nav auth={authState} handleSignIn={handleSignIn} handleSignOut={handleSignOut} />
+
+            <Nav auth={authState} 
+            handleSignIn={handleSignIn} 
+            handleSignOut={handleSignOut} />
             <div style={{ marginTop: '80px', width: '100%' }}>
               <Routes>
                 <Route path="/" element={<Landing handleSignIn={handleSignIn} />} />

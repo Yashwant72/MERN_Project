@@ -45,8 +45,11 @@
 }
 .signin-left-button {
   display: flex;
+  flex-direction: row;
+  width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  /* background-color: aqua; */
   flex: 4;
 }
 
@@ -135,7 +138,6 @@
   font-weight: 600;
 }
 
-
 .invalid {
-    border-color: red;
-  }
+  border-color: red;
+}

@@ -5,15 +5,24 @@ import dropDown from '../../assets/icons/dropDown.png'
 import { SignInContext } from '../../context/SignInContext';
 import { imagefrombuffer } from "imagefrombuffer"; //first import 
 import { Outlet, Link } from "react-router-dom";
-const Nav = (props) => {
+import { Alert, Button, Slide, Snackbar } from '@mui/material';
+import axios from 'axios';
+import { TokenContext } from '../../context/TokenContext';
 
-  const { user } = useContext(SignInContext);
+const Nav = (props) => {
+  const { token, setToken } = useContext(TokenContext);
+
+  const { user, setUser } = useContext(SignInContext);
   const [imageUrl, setImageUrl] = useState(user);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // console.log("🚀 ~ file: Nav.js:10 ~ Nav ~ user:", user);
   useEffect(() => {
-    setIsLoggedIn(user !== null);
     if (user) {
+      setIsLoggedIn(true);
       console.log("Nav updated");
       const base64String = btoa(String.fromCharCode(...new Uint8Array(user.avatar)));
       const imageNewUrl = `data:image/jpeg;base64,${base64String}`;
@@ -21,16 +30,10 @@ const Nav = (props) => {
     }
   }, [user]);
 
-  // const base64Image = Buffer.from(user.avatar).toString('base64');
-
-  // Create the data URL for the image
-  // const imageUrl = `data:image/jpeg;base64,${base64Image}`;
 
 
+  console.log("🚀 ~ file: Nav.js:35 ~ Nav ~ isLoggedIn:", isLoggedIn);
 
-  // const isLoggedIn = props.auth;
-  const [isLoggedIn, setIsLoggedIn] = useState(user !== null);
-  // console.log(isLoggedIn)
 
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,10 +44,45 @@ const Nav = (props) => {
 
   const handleLogout = () => {
     setIsMenuOpen(!isMenuOpen);
-
-    props.handleSignOut();
+    handleSignOut();
+    // props.handleSignOut();
 
     // Handle logout logic here
+  };
+
+  const handleSignOut = () => {
+    axios.post('/api/user/signout', null, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Replace `yourAuthToken` with the actual token
+      },
+    })
+      .then((response) => {
+
+        console.log("🚀 ~ file: Nav.js:58 ~ .then ~ response:", response);
+        setIsLoggedIn(false);
+        // setUser(response.data.user);
+        // setToken(response.data.token);
+
+        console.log('Sign-Out successful');
+        // Cookie.set('AuthToken', response.data.token, { expires: 365 }) 
+        // TODO autologin feature
+
+        setSnackbarSeverity('success');
+        setSnackbarMessage('Sign-Out successful');
+        setOpenSnackbar(true);
+        setTimeout(() => {
+          // props.onClick();
+        }, 2000);
+
+      })
+      .catch((error) => {
+
+        console.error('Error signing in:', error);
+        setSnackbarSeverity('error');
+        setSnackbarMessage('Error signing out');
+        setOpenSnackbar(true);
+
+      });
   };
 
 
@@ -101,8 +139,21 @@ const Nav = (props) => {
 
               {isMenuOpen && (
                 <div className='menu-content'>
-                  <button className='logout-button' onClick={handleLogout}>
+                  <button className='menu-button' onClick={handleLogout}>
                     Logout
+                  </button>
+                  <button className='menu-button' >
+                    <Link
+                      to="/dashboard"
+                      aria-current="page"
+                      onClick={() => { setIsMenuOpen(!isMenuOpen); }}
+                      style={{
+                        textDecoration: 'none',
+                        color:'var(--color-dark)'
+                      }}
+                    >
+                      Dashbard
+                    </Link>
                   </button>
                 </div>
               )}
