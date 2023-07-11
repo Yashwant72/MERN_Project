@@ -111,8 +111,8 @@ const Nav = (props) => {
                 Sell
               </Link>
 
-              <Link to="/contact" className="nav-link mx-4" aria-current="page" >
-                Contact
+              <Link to="/about" className="nav-link mx-4" aria-current="page" >
+                About Us
               </Link>
 
               {/* <Link to="/about" /> */}

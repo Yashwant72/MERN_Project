@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './containers/home/Home';
 import Sell from './components/Sell/Sell';
+import About from './components/Contact/About';
 import { Backdrop } from '@mui/material';
 import SignIn from './components/signin/SignIn';
 import SignUp from './components/signup/SignUp';
@@ -51,7 +52,9 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/buy" element={<Buy />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/sup" element={<SignUp />} />
+
                 <Route path="/dashboard" element={<Dashboard />} />
               </Routes>
             </div>
