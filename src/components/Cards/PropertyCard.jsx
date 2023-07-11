@@ -10,15 +10,15 @@ const PropertyCard = (props) => {
 
   return (
     <div className="card-container">
-      <div className="card-body" onClick={handleClick}>
+      <div className="card_body" onClick={handleClick}>
         <div className="card-media">
           <img src={props.img} alt="Building" width="250px" height="150px" />
         </div>
         <div className="card-content">
-          <div className="card-text">
-            <div className="card-text-heading">${props.price}</div>
+          <div className="card_text">
+            <div className="card_text-heading">${props.price}</div>
 
-            <div className="card-text-address">{props.address}</div>
+            <div className="card_text-address">{props.address}</div>
           </div>
           <div className="card-footer">
             <div className="card-footer-bed">
