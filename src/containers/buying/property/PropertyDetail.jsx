@@ -1,5 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useEffect }, { useContext, useState, useEffect } from "react";
 import "./propertyDetail.css";
+import axios from "axios";
 import tub from "../../../assets/icons/tub.png";
 import bed from "../../../assets/icons/bed.png";
 import area from "../../../assets/icons/area.png";
@@ -17,6 +18,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { TokenContext } from "../../../context/TokenContext";
 import { Alert, Button, Slide, Snackbar } from "@mui/material";
+import { TokenContext } from "../../../context/TokenContext";
 
 import axios from "axios";
 import { SignInContext } from "../../../context/SignInContext";
@@ -44,6 +46,13 @@ const PropertyDetail = ({
   //   "🚀 ~ file: PropertyDetail.jsx:14 ~ PropertyDetail ~ building:",
   //   building._id
   // );
+
+  const { token, setToken } = useContext(TokenContext);
+
+  useEffect(() => {
+    console.log(token);
+    console.log(building)
+  })
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -161,6 +170,13 @@ const PropertyDetail = ({
       setOpenSnackbar(true);
     }
   };
+
+  const handleAddBookmark = async () => {
+    const config = { headers: { "Authorization": `Bearer ${token}` } }
+
+    const { data } = await axios.post(`/api/user/bookmarks/${building._id}`, null, config);
+    console.log(data.message);
+  }
 
   return (
     <div className="property-container">
@@ -281,7 +297,7 @@ const PropertyDetail = ({
                 </div>
                 <div className="property-content-card-owner">
                   <span style={{ fontWeight: "bold" }}>Owner:</span>
-                  {building.currentOwner}
+                  {building.currentOwner.fullName}
                 </div>
                 <div className="property-content-card-facilites">
                   <span style={{ fontWeight: "bold" }}>Facilites:</span> <br />
@@ -325,7 +341,7 @@ const PropertyDetail = ({
                   <button className="property-content-card-btn">
                     Show contacts
                   </button>
-                  <button className="property-content-card-btn">
+                  <button className="property-content-card-btn" onClick={handleAddBookmark}>
                     Add to list
                   </button>
                 </div>

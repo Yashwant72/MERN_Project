@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useEffect, useContext } from 'react'
 import buildingData from '../../assets/dummyData//buildingData';
 
 import './dashboard.css';
@@ -13,8 +13,28 @@ import CustomCarousel from '../Carousel/CustomCarousel';
 import axios from 'axios';
 import Gallery from '../../containers/buying/gallery/Gallery';
 import data from '../../assets/dummyData/data';
-import { SignInContext } from '../../context/SignInContext';
+import { SignInContext } from '../../context/SignInContext';import { SignInContext } from '../../context/SignInContext';
+import { TokenContext } from "../../context/TokenContext";
+import axios from 'axios';
+
 const Dashboard = () => {
+  const { token, setToken } = useContext(TokenContext);
+  const { user, setUser } = useContext(SignInContext);
+
+  useEffect(() => {
+    const getUserBookmarks = async () => {
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+
+      const { data } = await axios.get(
+        `/api/user/bookmarks`,
+        config
+      );
+      console.log(data);
+    }
+
+    getUserBookmarks();
+  }, [])
+
   const { user } = useContext(SignInContext);
 
   console.log("🚀 ~ file: Dashboard.js:21 ~ Dashboard ~ user:", user);
