@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import buildingData from '../../assets/dummyData//buildingData';
 
 import './dashboard.css';
@@ -10,8 +10,28 @@ import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
 
 import CustomCarousel from '../Carousel/CustomCarousel';
 
+import { SignInContext } from '../../context/SignInContext';
+import { TokenContext } from "../../context/TokenContext";
+import axios from 'axios';
 
 const Dashboard = () => {
+  const { token, setToken } = useContext(TokenContext);
+  const { user, setUser } = useContext(SignInContext);
+
+  useEffect(() => {
+    const getUserBookmarks = async () => {
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+
+      const { data } = await axios.get(
+        `/api/user/bookmarks`,
+        config
+      );
+      console.log(data);
+    }
+
+    getUserBookmarks();
+  }, [])
+
   //TODO change to props
   const keyword = "";
   const filteredBuildingData = buildingData.filter((item) => item.address.toLowerCase().includes(keyword.toLowerCase())

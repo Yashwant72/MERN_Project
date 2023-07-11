@@ -81,9 +81,6 @@ const Buy = () => {
     setIsFormSubmitted(false);
   };
 
-  
-
-
   const handleSubmit = () => {
     if (searchText) {
       setIsFormSubmitted(true);

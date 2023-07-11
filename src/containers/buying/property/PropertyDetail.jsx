@@ -1,19 +1,35 @@
-import React from "react";
+import { useContext, useEffect } from "react";
 import "./propertyDetail.css";
+import axios from "axios";
 import tub from "../../../assets/icons/tub.png";
 import bed from "../../../assets/icons/bed.png";
 import area from "../../../assets/icons/area.png";
 import location from "../../../assets/icons/location.png";
 import { Rating } from "@mui/material";
+import { TokenContext } from "../../../context/TokenContext";
 
 // TODO add links for property images
 
 const PropertyDetail = ({ building }) => {
+  const { token, setToken } = useContext(TokenContext);
+
+  useEffect(() => {
+    console.log(token);
+    console.log(building)
+  })
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const formattedDate = date.toLocaleDateString("en-US");
     return formattedDate;
   };
+
+  const handleAddBookmark = async () => {
+    const config = { headers: { "Authorization": `Bearer ${token}` } }
+
+    const { data } = await axios.post(`/api/user/bookmarks/${building._id}`, null, config);
+    console.log(data.message);
+  }
 
   return (
     <div className="property-container">
@@ -77,7 +93,7 @@ const PropertyDetail = ({ building }) => {
                 </div>
                 <div className="property-content-card-owner">
                   <span style={{ fontWeight: "bold" }}>Owner:</span>
-                  {building.currentOwner}
+                  {building.currentOwner.fullName}
                 </div>
                 <div className="property-content-card-facilites">
                   <span style={{ fontWeight: "bold" }}>Facilites:</span> <br />
@@ -121,7 +137,7 @@ const PropertyDetail = ({ building }) => {
                   <button className="property-content-card-btn">
                     Show contacts
                   </button>
-                  <button className="property-content-card-btn">
+                  <button className="property-content-card-btn" onClick={handleAddBookmark}>
                     Add to list
                   </button>
                 </div>
