@@ -14,14 +14,12 @@ import { TokenContext } from "../../context/TokenContext";
 // TODO handle search text
 
 const Home = () => {
-  
   const { token, setToken } = useContext(TokenContext);
 
   // ** Fetching data
   const [Data, setData] = useState([]);
 
   console.log("🚀 ~ file: Home.jsx:23 ~ Home ~ imported data:", data);
-
 
   console.log("🚀 ~ file: Buy.jsx:61 ~ Buy ~ buildingData:", Data);
 
@@ -90,7 +88,6 @@ const Home = () => {
 
   // console.log("🚀 ~ file: Home.jsx:87 ~ Home ~ propertyData:", propertyData);
 
-
   useEffect(() => {
     const fetchCoordinates = async () => {
       try {
@@ -131,7 +128,7 @@ const Home = () => {
         >
           <div className="home-search">
             <div className="search-card">
-              <div className="card-heading">
+              <div className="home-card-heading">
                 <h1>Easiest Way to find your dream place</h1>
                 <h4>
                   Explore a wide range of properties and find your ideal haven
@@ -155,20 +152,20 @@ const Home = () => {
               <div className="home-stats">
                 <div className="home-stats-info1">
                   <div className="home-stats-info1-content">
-                    <h3>200</h3>
-                    <p>Awards wining</p>
+                    <h3>200+</h3>
+                    <p>Awards</p>
                   </div>
                 </div>
                 <div className="home-stats-info2">
                   <div className="home-stats-info2-content">
-                    <h3>200</h3>
-                    <p>Awards wining</p>
+                    <h3>300+</h3>
+                    <p>Locations</p>
                   </div>
                 </div>
                 <div className="home-stats-info3">
                   <div className="home-stats-info3-content">
-                    <h3>200</h3>
-                    <p>Awards wining</p>
+                    <h3>500+</h3>
+                    <p>Properties</p>
                   </div>
                 </div>
               </div>

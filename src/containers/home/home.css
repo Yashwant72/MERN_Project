@@ -47,7 +47,17 @@
   border-radius: 4px;
   box-shadow: 4px 4px 24px 0px rgba(0, 0, 0, 0.25);
 }
-
+.home-card-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.home-card-heading h1 {
+  text-align: start;
+  color: var(--color-dark);
+}
 .home-stats {
   display: flex;
   flex-direction: row;

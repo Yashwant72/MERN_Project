@@ -34,20 +34,20 @@ const PropertyDetail = ({
 
   // console.log("🚀 ~ file: PropertyDetail.jsx:26 ~ user:", user);
 
-  // console.log("🚀 ~ file: PropertyDetail.jsx:24 ~ token:", token);
+  console.log("🚀 ~ file: PropertyDetail.jsx:24 ~ token:", token);
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [snackbarMessage, setSnackbarMessage] = useState("");
-  // console.log(
-  //   "🚀 ~ file: PropertyDetail.jsx:14 ~ PropertyDetail ~ building:",
-  //   building._id
-  // );
+  console.log(
+    "🚀 ~ file: PropertyDetail.jsx:14 ~ PropertyDetail ~ building:",
+    building._id
+  );
 
-  useEffect(() => {
-    console.log(token);
-    console.log(building);
-  });
+  // useEffect(() => {
+  //   console.log(token);
+  //   console.log(building);
+  // });
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -118,7 +118,7 @@ const PropertyDetail = ({
       [name]: files ? files[0] : value,
     }));
   };
-  console.log(propertyData);
+  // console.log(propertyData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

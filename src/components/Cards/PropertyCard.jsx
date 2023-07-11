@@ -10,7 +10,7 @@ const PropertyCard = (props) => {
 
   return (
     <div className="card-container">
-      <div className="card" onClick={handleClick}>
+      <div className="card-body" onClick={handleClick}>
         <div className="card-media">
           <img src={props.img} alt="Building" width="250px" height="150px" />
         </div>

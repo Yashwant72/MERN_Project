@@ -9,11 +9,12 @@
   transition: all 0.2s ease;
   border-radius: 4px;
   margin: 10px 0px;
+  background-color: var(--color-light);
 }
 .card-container:hover {
   box-shadow: 8px 8px 15px 0px rgba(0, 0, 0, 0.55);
 }
-.card {
+.card-body {
   display: flex;
   flex-direction: column;
   width: 250px;
