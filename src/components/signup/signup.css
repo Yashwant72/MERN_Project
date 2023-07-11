@@ -1,0 +1,145 @@
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+}
+.signup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+
+  background-color: var(--color-light);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.signup-left {
+  min-height: 800px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  /* background-color: red; */
+  padding: 20px;
+  gap: 10px;
+}
+.signup-left-title {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex: 1;
+}
+.signup-left-label {
+  flex: 0.2;
+}
+.signup-left-inputs {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+}
+.signup-left-button {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: aqua; */
+  flex: 4;
+}
+
+.signup-left-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* background-color: blue; */
+  width: 100%;
+}
+
+.signup-left-inputs input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  /* background-color: blue; */
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+}
+
+.signup-left-button button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100px;
+  justify-content: space-around;
+  font-family: var(--font-family);
+  color: var(--color-light);
+  font-size: 18px;
+  font-weight: 500;
+  background-color: var(--color-dark);
+  transition: all 0.25s ease;
+}
+.signup-left-button button:hover {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100px;
+  justify-content: space-around;
+  font-family: var(--font-family);
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  border-color: var(--color-dark);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.signup-right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: blue; */
+}
+
+.signup-right-image {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.signup-right-image img {
+  width: 100%;
+  height: 850px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.signup-left-title {
+  font-family: var(--font-family);
+  color: var(--color-dark);
+  font-size: 56px;
+  font-weight: 600;
+}
+
+.signup-left-label {
+  font-family: var(--font-family);
+  color: var(--color-dark);
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.invalid {
+  border-color: red;
+}
