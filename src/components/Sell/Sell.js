@@ -5,6 +5,7 @@ import { TokenContext } from '../../context/TokenContext';
 import './sell.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGreaterThan } from '@fortawesome/free-solid-svg-icons';
+import { Alert, Slide, Snackbar } from '@mui/material';
 const Sell = () => {
   const { token } = useContext(TokenContext);
   const [propertyData, setPropertyData] = useState({
@@ -14,10 +15,16 @@ const Sell = () => {
     image: '',
     propertyType: '',
     bedroomCount: '',
-    bathroomCount:'',
-    facility : '',
+    bathroomCount: '',
+    facility: '',
     description: ''
   });
+
+
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -27,10 +34,10 @@ const Sell = () => {
       [name]: files ? files[0] : value
     }));
   };
-    console.log(propertyData)
+  console.log(propertyData)
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const propertyDataJSON = {
         currentOwner: token,
@@ -44,7 +51,7 @@ const Sell = () => {
         facilities: propertyData.facility,
         description: propertyData.description,
       };
-      console.log(token);
+      // console.log(token);
       console.log("my data")
       console.log(propertyDataJSON);
       const response = await axios.post('/api/property', propertyDataJSON, {
@@ -53,23 +60,37 @@ const Sell = () => {
           Authorization: `Bearer ${token}`
         }
       });
-  
+
       // Handle the response from the API if needed
       console.log(response.data);
+      setSnackbarSeverity('success');
+      setSnackbarMessage('Property Added for sell successful');
+      setOpenSnackbar(true);
+      setTimeout(() => {
+
+      }, 2000);
     } catch (error) {
       console.log(error.response.data);
+      setSnackbarSeverity('error');
+      setSnackbarMessage('Property could not be added for sell');
+      setOpenSnackbar(true);
     }
   };
-  
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
   return (
     <section className='sell-container'>
       <div className='sell'>
 
         <div className='sell-form'>
           <h1>Sell Property</h1>
-          
+
           <div>
-          <form onSubmit={handleSubmit} className='form-details'>
+            <form onSubmit={handleSubmit} className='form-details'>
               <div className='sell-address'>
                 <h3>Step 1</h3>
                 <h5>Enter Details</h5>
@@ -150,22 +171,39 @@ const Sell = () => {
                   value={propertyData.completeAddress}
                   onChange={handleChange}
                 />
+                <div className='signup-left-button'>
+                  <button type='submit' >
+                    Next
+                    <span className='submit-icon'>
+                      <FontAwesomeIcon icon={faGreaterThan} />
+                    </span>
+                  </button>
+                </div>
               </div>
-
-              <button type='submit' className='form-submit'>
-                Next
-                <span className='submit-icon'>
-                  <FontAwesomeIcon icon={faGreaterThan} />
-                </span>
-              </button>
             </form>
           </div>
         </div>
 
         <div className='sell-image'>
-          
-        </div>
 
+        </div>
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={3000}
+          onClose={handleSnackbarClose}
+          TransitionComponent={Slide}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+          <Alert
+            severity={snackbarSeverity}
+            sx={{
+              width: '100%',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+            }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
       </div>
     </section>
   )

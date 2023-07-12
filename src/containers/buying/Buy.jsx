@@ -240,17 +240,17 @@ const Buy = () => {
               Gallery
             </MenuItem>
           </Menu>
-          <div className="buy-filters">
+          {/* <div className="buy-filters">
             <button>
               <img src={filter} alt="filter" />
               Filter
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="buy-options-container">
         {showList && <List keyword={searchText} data={Data} />}
-        {showMap && <Map data={Data}/>}
+        {showMap && <Map data={Data} />}
         {showGallery && (
           <Gallery
             keyword={searchText}

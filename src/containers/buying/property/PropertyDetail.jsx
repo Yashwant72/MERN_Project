@@ -34,14 +34,15 @@ const PropertyDetail = ({
 
   // console.log("🚀 ~ file: PropertyDetail.jsx:26 ~ user:", user);
 
-  console.log("🚀 ~ file: PropertyDetail.jsx:24 ~ token:", token);
+  // console.log("🚀 ~ file: PropertyDetail.jsx:24 ~ token:", token);
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [snackbarMessage, setSnackbarMessage] = useState("");
+
   console.log(
     "🚀 ~ file: PropertyDetail.jsx:14 ~ PropertyDetail ~ building:",
-    building._id
+    building
   );
 
   // useEffect(() => {
@@ -194,7 +195,20 @@ const PropertyDetail = ({
       setOpenSnackbar(true);
     }
   };
-
+  const handleShowContact = () => {
+    console.log(building.currentOwner.fullName);
+    setSnackbarMessage(
+      "Name: " +
+        building.currentOwner.fullName +
+        " |  Phone: " +
+        building.currentOwner.phone +
+        " |   Email: " +
+        building.currentOwner.email
+    );
+    setSnackbarSeverity("success");
+    setOpenSnackbar(true);
+    setTimeout(() => {}, 5000);
+  };
   return (
     <div className="property-container">
       <div className="property">
@@ -264,7 +278,7 @@ const PropertyDetail = ({
                 </div>
               </div>
 
-              <div className="property-content-details-header-rating">
+              {/* <div className="property-content-details-header-rating">
                 {building.rating}
                 <Rating
                   name="read-only"
@@ -274,7 +288,7 @@ const PropertyDetail = ({
                   size="medium"
                   className="custom-rating"
                 />
-              </div>
+              </div> */}
             </div>
             <div className="property-content-details-body">
               <div className="property-content-details-address">
@@ -314,7 +328,7 @@ const PropertyDetail = ({
                 </div>
                 <div className="property-content-card-owner">
                   <span style={{ fontWeight: "bold" }}>Owner:</span>
-                  {building.currentOwner.fullName}
+                  {building.currentOwner ? building.currentOwner.fullName : ""}
                 </div>
                 <div className="property-content-card-facilites">
                   <span style={{ fontWeight: "bold" }}>Facilites:</span> <br />
@@ -355,7 +369,10 @@ const PropertyDetail = ({
                   </div>
                 </div>
                 <div className="property-content-card-buttons">
-                  <button className="property-content-card-btn">
+                  <button
+                    className="property-content-card-btn"
+                    onClick={handleShowContact}
+                  >
                     Show contacts
                   </button>
                   <button
@@ -550,6 +567,21 @@ const PropertyDetail = ({
           {snackbarMessage}
         </Alert>
       </Snackbar>
+      {/* <Snackbar
+        open={openContactSnackbar}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          severity="success"
+          sx={{
+            width: "100%",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+          }}
+        >
+          This is a contact message!
+        </Alert>
+      </Snackbar> */}
     </div>
   );
 };
