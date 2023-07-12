@@ -10,7 +10,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: calc(100vh - 80px);
-
 }
 
 .landing-page {
@@ -98,10 +97,11 @@ h1 {
   border: none;
   border-radius: 4px;
   height: 60px;
+  transition: all 0.25s ease;
 }
 
 .create-button:hover {
-  background-color: var(--color-contrast);
+  background-color: var(--color-dark);
   color: var(--color-light);
 }
 
@@ -124,6 +124,17 @@ h1 {
   font-family: var(--font-family);
   font-size: 20px;
   letter-spacing: 0.4px;
+}
+
+.signIn-btn {
+  border: none;
+  outline: none;
+  color: var(--color-contrast);
+  transition: all 0.25s ease;
+}
+
+.signIn-btn:hover {
+  color: var(--color-dark);
 }
 
 /* .search-card {

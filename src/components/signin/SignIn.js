@@ -6,8 +6,10 @@ import { SignInContext } from '../../context/SignInContext';
 import { TokenContext } from '../../context/TokenContext';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Alert, Button, Slide, Snackbar } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = (props) => {
+  const navigate = useNavigate();
   const { user, setUser } = useContext(SignInContext);
   const { token, setToken } = useContext(TokenContext);
 
@@ -67,6 +69,7 @@ const SignIn = (props) => {
         setTimeout(() => {
           props.onClick();
         }, 2000);
+        navigate("/home");
 
       })
       .catch((error) => {
@@ -78,6 +81,8 @@ const SignIn = (props) => {
 
       });
   };
+
+
 
   return (
 

@@ -39,7 +39,6 @@
   font-family: var(--font-family);
   font-weight: 700;
   text-align: center;
-
 }
 
 .list-col-icons {
@@ -124,11 +123,12 @@
 .listRow-address {
   width: 35%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   color: var(--color-dark);
   font-size: 16px;
   font-family: var(--font-family);
+  text-align: start;
   /* min-width: 250px; */
   /* background-color: red; */
 }

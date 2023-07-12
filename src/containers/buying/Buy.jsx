@@ -15,7 +15,7 @@ import { TokenContext } from "../../context/TokenContext";
 import { SignInContext } from "../../context/SignInContext";
 import axios from "axios";
 
-const Buy = () => {
+const Buy = (props) => {
   const { token } = useContext(TokenContext);
   const { user } = useContext(SignInContext);
 
@@ -26,8 +26,13 @@ const Buy = () => {
   // }, [token]);
 
   // const config;
+  console.log(
+    "🚀 ~ file: Buy.jsx:32 ~ Buy ~ props.InitialSearch:",
+    props.InitialSearch
+  );
 
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState(props.SearchText || "");
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [showList, setShowList] = useState(true);
   const [showMap, setShowMap] = useState(false);

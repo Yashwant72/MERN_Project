@@ -139,7 +139,7 @@ const Map = ({ data }) => {
             <Backdrop
               sx={{
                 color: "var(--color-dark)",
-                zIndex: "90",
+                zIndex: "10000 !important",
               }}
               open={openBackdrop}
               onClick={handleClose}

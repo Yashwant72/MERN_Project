@@ -81,9 +81,17 @@
   outline: none;
   border: none;
   border-radius: 4px;
+  transition: all 0.1s ease;
 }
+.bookmark-button {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  transition: all 0.1s ease;
+}
+
 .bookmark-button:hover {
-  color: var(--color-dark);
+  color: var(--color-light);
+  background-color: var(--color-contrast);
 }
 
 .bookmark-button-click:hover {

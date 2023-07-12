@@ -4,12 +4,13 @@ import user from '../../assets/images/user.png'
 import dropDown from '../../assets/icons/dropDown.png'
 import { SignInContext } from '../../context/SignInContext';
 import { imagefrombuffer } from "imagefrombuffer"; //first import 
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { Alert, Button, Slide, Snackbar } from '@mui/material';
 import axios from 'axios';
 import { TokenContext } from '../../context/TokenContext';
 
 const Nav = (props) => {
+  const navigate = useNavigate();
   const { token, setToken } = useContext(TokenContext);
 
   const { user, setUser } = useContext(SignInContext);
@@ -71,13 +72,14 @@ const Nav = (props) => {
 
   const handleLogout = () => {
     setIsMenuOpen(!isMenuOpen);
-    handleSignOut();
-    // props.handleSignOut();
+    handleSignUp();
+    navigate('/')
+    // props.handleSignUp();
 
     // Handle logout logic here
   };
 
-  const handleSignOut = () => {
+  const handleSignUp = () => {
     axios.post('/api/user/signout', null, {
       headers: {
         Authorization: `Bearer ${token}`, // Replace `yourAuthToken` with the actual token
@@ -194,7 +196,7 @@ const Nav = (props) => {
         ) : (
           <div>
             <button
-              className='btn border-3 bg-primary btn-sm px-3 ms-5 text-white' onClick={props.handleSignOut}
+              className='btn border-3 bg-primary btn-sm px-3 ms-5 text-white' onClick={props.handleSignUp}
             >
               Sign Up
             </button>

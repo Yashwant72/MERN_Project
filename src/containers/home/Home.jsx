@@ -13,8 +13,18 @@ import { TokenContext } from "../../context/TokenContext";
 
 // TODO handle search text
 
-const Home = () => {
+const Home = (props) => {
   const { token, setToken } = useContext(TokenContext);
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = () => {
+    props.handleSearch(searchValue);
+    // console.log("🚀 ~ file: Landing.js:18 ~ Landing ~ searchValue:", searchValue);
+  };
+
+  const handleChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
   // ** Fetching data
   const [Data, setData] = useState([]);
@@ -140,9 +150,11 @@ const Home = () => {
                   type="search"
                   className="search-box"
                   placeholder="Search Properties"
+                  value={searchValue}
+                  onChange={handleChange}
                 />
                 {/* search button */}
-                <button className="search-button">
+                <button className="search-button" onClick={handleSearch}>
                   <span className="search-icon">
                     <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
                   </span>

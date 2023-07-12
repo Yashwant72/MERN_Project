@@ -190,21 +190,42 @@ const PropertyDetail = ({
       setTimeout(() => {}, 2000);
     } catch (error) {
       console.error("Error updating bookmarks:", error);
-      setSnackbarMessage("Already Bookmarked");
-      setSnackbarSeverity("error");
+      // console.log(user);
+      if (!user) {
+        setSnackbarMessage('Please sign in first.');
+      } else {
+        setSnackbarMessage('Already Bookmarked');
+      }
+    
+      setSnackbarSeverity('info');
       setOpenSnackbar(true);
     }
   };
   const handleShowContact = () => {
-    console.log(building.currentOwner.fullName);
-    setSnackbarMessage(
-      "Name: " +
-        building.currentOwner.fullName +
-        " |  Phone: " +
-        building.currentOwner.phone +
-        " |   Email: " +
-        building.currentOwner.email
+    const owner = building.currentOwner;
+    const name = owner.fullName || "Unknown";
+    const phone = owner.phone || "Unknown";
+    const email = owner.email || "Unknown";
+
+    let message = (
+      <div
+        style={{
+          margin: "10px",
+        }}
+      >
+        Name: {name}
+        <br />
+        Phone: {phone}
+        <br />
+        Email: {email}
+      </div>
     );
+
+    if (name === "Unknown" && phone === "Unknown" && email === "Unknown") {
+      message = "Please check the buy section for contact information.";
+    }
+
+    setSnackbarMessage(message);
     setSnackbarSeverity("success");
     setOpenSnackbar(true);
     setTimeout(() => {}, 5000);
