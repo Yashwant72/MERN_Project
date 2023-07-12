@@ -54,7 +54,6 @@ function App() {
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/buy" element={<Buy />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/signup" element={<SignUp />} />
                 <Route path="/dashboard" element={<Dashboard />} />
               </Routes>
             </div>
